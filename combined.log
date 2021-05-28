@@ -1,0 +1,7 @@
+{"message":"hi","level":"error","service":"user-service"}
+error: hi {"service":"user-service"}
+error: hi
+error: hi {"timestamp":"2021-05-23T16:30:52.035Z"}
+error: hi {"timestamp":"2021-05-27T15:53:50.259Z"}
+error: hi {"timestamp":"2021-05-27T16:06:06.351Z"}
+error: hi {"timestamp":"2021-05-27T16:16:01.892Z"}
