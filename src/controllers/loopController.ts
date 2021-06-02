@@ -1,10 +1,10 @@
 import LoopPostModel from '../types/postModels/LoopPostModel';
 import {HState} from '../HState';
-import HandyApiV1 from '../HandyApi/HandyApiV1';
 import HandyCsv from '../csv/HandyCsv';
 import TSupportedAnims from '../types/TSupportedAnims';
+import HandyApiV2 from '../HandyApi/HandyApiV2';
 
-export const handleLoop = (model: LoopPostModel, hInfo: HState, handy: HandyApiV1): void => {
+export const handleLoop = (model: LoopPostModel, hInfo: HState, handy: HandyApiV2): void => {
 	const nameAnim = hInfo.getNameAnim();
 	if (nameAnim === null) {
 		return;
@@ -21,7 +21,6 @@ export const handleLoop = (model: LoopPostModel, hInfo: HState, handy: HandyApiV
 			hInfo.getNameAnim() as TSupportedAnims,
 			response.newState
 		))
-			.then(res => console.log(res))
 			.catch(() => {
 				// do nothing
 			});
@@ -29,11 +28,9 @@ export const handleLoop = (model: LoopPostModel, hInfo: HState, handy: HandyApiV
 		// idle no change
 	} else if (response.newState === null) {
 		handy.syncPause()
-			.then(res => console.log(res))
 			.catch(err => console.error(err));
 	} else if (response.started) {
 		handy.syncPlay()
-			.then(res => console.log(res))
 			.catch(err => console.error(err));
 	} else {
 		// state changed
@@ -42,7 +39,6 @@ export const handleLoop = (model: LoopPostModel, hInfo: HState, handy: HandyApiV
 			hInfo.getNameAnim() as TSupportedAnims,
 			response.newState
 		))
-			.then(res => console.log(res))
 			.catch(() => {
 				// do nothing
 			});

@@ -29,7 +29,8 @@ interface IStroke {
 
 export interface ICsv {
 	name: string,
-	size: number
+	size: number,
+	sha256?: string
 }
 
 export interface IState {

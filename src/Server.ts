@@ -2,12 +2,12 @@ import express, {Request} from 'express';
 import bodyParser from 'body-parser';
 import NewPosePostModel from './types/postModels/NewPosePostModel';
 import LoopPostModel from './types/postModels/LoopPostModel';
-import HandyApiV1 from './HandyApi/HandyApiV1';
 import {HState} from './HState';
 import {handleNewPose} from './controllers/newPoseController';
 import {handleLoop} from './controllers/loopController';
 import {handleStop} from './controllers/stopController';
 import {handleSpeedChg} from './controllers/speedChgController';
+import HandyApiV2 from './HandyApi/HandyApiV2';
 
 export default class Server {
 
@@ -17,33 +17,38 @@ export default class Server {
 
 	private readonly hInfo: HState = new HState();
 
-	private readonly handy: HandyApiV1;
+	private readonly handy: HandyApiV2;
 
 	public constructor(connKey: string) {
-		this.handy = new HandyApiV1(connKey);
+		this.handy = new HandyApiV2(connKey);
 	}
 
 	public start(port: number): void {
 		this.app.use(bodyParser.json()).listen(port, () => {
 			console.log(`Listening at http://localhost:${port}`)
 		})
-		this.timedCheckOnline();
-		this.timedTimeSync();
-		this.registerRoutes();
+		this.timedCheckOnline()
+			.then(() => {
+				this.handy.syncTime()
+					.catch(err => {
+						console.error(err);
+						throw new Error('Cannot initialize, failed to sync time');
+					});
+				this.registerRoutes();
+			})
+			.catch(() => {
+				throw new Error('Cannot initialize, failed to check for online status');
+			});
 	}
 
-	private timedTimeSync(): NodeJS.Timeout {
-		void this.handy.syncTime(20);
-		return setInterval(() => {
-			void this.handy.syncTime(20);
-		}, 60 * 1000);
-	}
-
-	private timedCheckOnline(): NodeJS.Timeout {
-		this.handy.checkOnline();
-		return setInterval(() => {
-			this.handy.checkOnline();
+	private async timedCheckOnline(): Promise<void> {
+		setInterval(() => {
+			this.handy.checkOnline()
+				.catch(() => {
+					console.warn('Device not online');
+				});
 		}, 45 * 1000);
+		return this.handy.checkOnline();
 	}
 
 	private registerRoutes(): void {

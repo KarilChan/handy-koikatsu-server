@@ -74,7 +74,8 @@ const noHandBlowjob: IInfoPose = 	{
 	],
 	csv: {
 		name: 'nhb.csv',
-		size: 21194
+		size: 21194,
+		sha256: 'dde13b18f64096b49555a96852d9349558bdf56b9d422680e9effdee790be963'
 	}
 }
 

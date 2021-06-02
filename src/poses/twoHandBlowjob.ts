@@ -94,7 +94,8 @@ const twoHandBlowjob: IInfoPose = 	{
 	],
 	csv: {
 		name: 'thb.csv',
-		size: 28514
+		size: 28514,
+		sha256: '8f7828172fbe7afc8abe0b0e35106e7f59d1256039c7b86a5487c3099136cbe7'
 	}
 }
 

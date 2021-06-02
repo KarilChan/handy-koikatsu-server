@@ -1,0 +1,6 @@
+export enum V2HSSPSetupResult {
+	USING_CACHED = 0,
+	DOWNLOADED = 1,
+	DOWNLOAD_ERROR = -1,
+	SYNC_REQUIRED = -20
+}

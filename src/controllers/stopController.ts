@@ -1,6 +1,6 @@
-import HandyApiV1 from '../HandyApi/HandyApiV1';
+import HandyApiV2 from '../HandyApi/HandyApiV2';
 
-export const handleStop = (handy: HandyApiV1): void => {
+export const handleStop = (handy: HandyApiV2): void => {
 	void handy.syncPause()
 		.catch(() => {
 			// theHandy is disconnected or stopped already

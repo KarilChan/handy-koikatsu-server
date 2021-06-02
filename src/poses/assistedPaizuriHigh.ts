@@ -79,7 +79,8 @@ const assistedPaizuriHigh: IInfoPose = 	{
 	],
 	csv: {
 		name: 'apzh.csv',
-		size: 23088
+		size: 23088,
+		sha256: '380b2b000b36428198aaa75903331dc8a505455428d4b7955f5f56c18cfc9965'
 	}
 }
 

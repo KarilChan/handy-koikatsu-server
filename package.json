@@ -1,7 +1,7 @@
 {
   "name": "handy-kk-server",
   "version": "1.0.0-alpha",
-  "description": "A complete Node.js project template using TypeScript and following general best practices.",
+  "description": "Listens for requests from koikatsu-handy-plugin and calls the Handy API to control the device.",
   "keywords": [
     "thehandy",
     "koikatsu",
@@ -14,7 +14,7 @@
   "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chriswells0/node-typescript-template.git"
+    "url": "https://github.com/KarilChan/handy-koikatsu-server.git"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -59,6 +59,7 @@
     "nyc": "^15.0.0",
     "ping": "^0.4.0",
     "source-map-support": "^0.5.12",
+    "thehandy": "github:KarilChan/thehandy",
     "ts-node": "^9.0.0",
     "tslint": "^6.0.0",
     "typescript": "^4.0.3"
@@ -73,12 +74,7 @@
     "axios": "^0.21.1",
     "express": "^4.17.1",
     "json-2-csv": "^3.10.3",
-    "node-fetch": "^2.6.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "sitka": "^1.0.5",
     "stdout-update": "^1.6.5",
-    "thehandy": "github:KarilChan/thehandy",
     "webpack": "^5.34.0",
     "winston": "^3.3.3",
     "yargs": "^15.3.1"
