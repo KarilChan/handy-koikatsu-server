@@ -2,7 +2,9 @@ import {IInfoPose} from '../csv/combinedPoses';
 import ELoopType from '../types/ELoopType';
 
 const onaholeHandjob: IInfoPose = {
-	names: ['Standing Onahole Handjob'],
+	aliases: [
+		'Standing Onahole Handjob', '立ちオナホ手コキ',
+	],
 	states: [
 		{
 			names: ['WLoop'],
@@ -45,7 +47,7 @@ const onaholeHandjob: IInfoPose = {
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['M_OUT_Start', 'M_OUT_Loop', 'OUT_A'],
@@ -59,12 +61,12 @@ const onaholeHandjob: IInfoPose = {
 					position: 100
 				},
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		}
 	],
 	csv: {
 		name: 'onaHj.csv',
-		size: 21627
+		sha256: 'ece40e502c89adc0b7d996781f5302df0b9f93edc877458a54fbd15f3fda763b'
 	}
 }
 

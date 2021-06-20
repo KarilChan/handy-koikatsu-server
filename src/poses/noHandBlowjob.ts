@@ -2,7 +2,9 @@ import ELoopType from '../types/ELoopType';
 import {IInfoPose} from '../csv/combinedPoses';
 
 const noHandBlowjob: IInfoPose = 	{
-	names: ['Standing No-Hand Blowjob'],
+	aliases: [
+		'Standing No-Hand Blowjob', '立ちノーハンドフェラ'
+	],
 	states: [
 		{
 			names: ['WLoop'],
@@ -45,7 +47,7 @@ const noHandBlowjob: IInfoPose = 	{
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['IN_Start', 'IN_Loop'],
@@ -59,7 +61,7 @@ const noHandBlowjob: IInfoPose = 	{
 					position: 50
 				}
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['Oral_Idle', 'Oral_Idle_IN', 'Drink_IN', 'Drink', 'Drink_A', 'Vomit', 'Vomit_IN', 'Vomit_A', 'M_OUT_Start', 'M_OUT_Loop', 'OUT_A'],
@@ -69,13 +71,12 @@ const noHandBlowjob: IInfoPose = 	{
 					position: 100
 				}
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		}
 	],
 	csv: {
 		name: 'nhb.csv',
-		size: 21194,
-		sha256: 'dde13b18f64096b49555a96852d9349558bdf56b9d422680e9effdee790be963'
+		sha256: 'c26d216b5b7fbdac771a30fcce2a849e430186e877cb662a9267e1d17bbba869'
 	}
 }
 

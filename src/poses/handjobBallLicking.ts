@@ -2,7 +2,9 @@ import {IInfoPose} from '../csv/combinedPoses';
 import ELoopType from '../types/ELoopType';
 
 const handjobBallLicking: IInfoPose = {
-	names: ['Standing Handjob & Ball Licking'],
+	aliases: [
+		'Standing Handjob & Ball Licking', '立ち玉舐め手コキ',
+	],
 	states: [
 		{
 			names: ['WLoop'],
@@ -45,7 +47,7 @@ const handjobBallLicking: IInfoPose = {
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['OUT_A'],
@@ -59,12 +61,12 @@ const handjobBallLicking: IInfoPose = {
 					position: 25
 				},
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		}
 	],
 	csv: {
 		name: 'hjbl.csv',
-		size: 21616
+		sha256: '1aea49bfd0daac966cb2e82ad87c8fc2170e6d9430c68dc83c8202aa29537767'
 	}
 }
 

@@ -2,7 +2,7 @@ import {json2csv} from 'json-2-csv';
 import fs from 'fs';
 import HandyCsv, {
 	CSV_RESOLUTION,
-	CSV_TIME_PER_INTERVAL,
+	CSV_TIME_PER_LOOP,
 	KK_LOOP_BASE_LENGTH,
 	KK_SPEED_MAX,
 	KK_SPEED_MIN
@@ -19,7 +19,7 @@ for (const pose of combinedPoses) {
 	const strokes: ICsvStroke[] = [];
 	const states = pose.states;
 	// theHandy ignores the first line of the csv, use it to store metadata
-	const firstLine = `# ${pose.names[0]} / Resolution: ${CSV_RESOLUTION} / Interval length: ${CSV_TIME_PER_INTERVAL}ms / ${new Date().toISOString()}\n`;
+	const firstLine = `# ${pose.aliases[0]} / Resolution: ${CSV_RESOLUTION} / Interval length: ${CSV_TIME_PER_LOOP}ms \n`;
 
 	states.forEach((state, index) => {
 		const baseTime = HandyCsv.getStateStartTimeByIndex(pose, index);
@@ -28,7 +28,7 @@ for (const pose of combinedPoses) {
 				for (let i = 1; i <= CSV_RESOLUTION; i++) {
 					const multi = KK_SPEED_MIN + (KK_SPEED_MAX - KK_SPEED_MIN) / (CSV_RESOLUTION - 1) * (i - 1);
 					const length = KK_LOOP_BASE_LENGTH / multi / (state.multiplier ?? 1);
-					for (let time = (i - 1) * CSV_TIME_PER_INTERVAL; time < i * CSV_TIME_PER_INTERVAL - length; time += length) {
+					for (let time = (i - 1) * CSV_TIME_PER_LOOP; time < i * CSV_TIME_PER_LOOP - length; time += length) {
 						let lastTime = -1;
 						for (const stroke of state.strokes) {
 							if (stroke.time >= 1 || stroke.time <= lastTime) {
@@ -44,9 +44,9 @@ for (const pose of combinedPoses) {
 				}
 				break;
 			}
-			case ELoopType.single: {
+			case ELoopType.static: {
 				const length = KK_LOOP_BASE_LENGTH / (state.multiplier ?? 1);
-				for (let time = 0; (time + length) < CSV_TIME_PER_INTERVAL; time += length) {
+				for (let time = 0; (time + length) < CSV_TIME_PER_LOOP; time += length) {
 					for (const stroke of state.strokes) {
 						strokes.push({
 							time: Math.round(time + baseTime + length * stroke.time),
@@ -56,8 +56,14 @@ for (const pose of combinedPoses) {
 				}
 				break;
 			}
-			case ELoopType.manual: {
-				// ignore for now, need to manually add strokes
+			case ELoopType.single: {
+				for (const stroke of state.strokes) {
+					const length = KK_LOOP_BASE_LENGTH / (state.multiplier ?? 1);
+					strokes.push({
+						time: Math.round(baseTime + length * stroke.time),
+						position: stroke.position
+					});
+				}
 				break;
 			}
 		}

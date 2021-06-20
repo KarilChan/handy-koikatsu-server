@@ -1,31 +1,5 @@
-type TSupportedAnimStates = (
-	'Idle'
-	| 'WLoop'
-	| 'SLoop'
-	| 'OLoop'
-	| 'M_OUT_Start'
-	| 'M_OUT_Loop'
-	| 'OUT_A'
-	| 'IN_Start'
-	| 'IN_Loop'
-	| 'Oral_Idle'
-	| 'Oral_Idle_IN'
-	| 'Drink_IN'
-	| 'Drink'
-	| 'Drink_A'
-	| 'Vomit_IN'
-	| 'Vomit'
-	| 'Vomit_A'
-	| 'Insert'
-	| 'InsertIdle'
-	| 'WS_IN_Start'
-	| 'WS_IN_Loop'
-	| 'WS_IN_A'
-	| 'M_IN_Start'
-	| 'M_IN_Loop'
-	| 'IN_A'
-	| 'Pull'
-	| 'Drop'
-);
+import SUPPORTED_STATES from '../SUPPORTED_STATES';
+
+type TSupportedAnimStates = typeof SUPPORTED_STATES[number];
 
 export default TSupportedAnimStates;

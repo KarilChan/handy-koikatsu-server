@@ -2,7 +2,11 @@ import {IInfoPose} from '../csv/combinedPoses';
 import ELoopType from '../types/ELoopType';
 
 const glansRubbing: IInfoPose = {
-	names: ['Glans Rubbing', 'Standing Glans Rubbing', 'Seated Glans Rubbing'],
+	aliases: [
+		'Glans Rubbing', '亀頭いじり',
+		'Standing Glans Rubbing', '立ち亀頭いじり',
+		'Seated Glans Rubbing', '椅子亀頭いじり',
+	],
 	states: [
 		{
 			names: ['WLoop'],
@@ -45,7 +49,7 @@ const glansRubbing: IInfoPose = {
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['M_OUT_Start', 'M_OUT_Loop'],
@@ -60,7 +64,7 @@ const glansRubbing: IInfoPose = {
 				}
 			],
 			multiplier: 2.5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['OUT_A'],
@@ -74,12 +78,12 @@ const glansRubbing: IInfoPose = {
 					position: 15
 				},
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		}
 	],
 	csv: {
 		name: 'gr.csv',
-		size: 22583
+		sha256: '66c9e4ff0303a9019990b1313ebd8cfa073fd72993f4e555704fca3381ce17ad'
 	}
 }
 

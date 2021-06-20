@@ -21,6 +21,28 @@ import assistedPaizuri from '../poses/assistedPaizuri';
 import assistedPaizuriHigh from '../poses/assistedPaizuriHigh';
 import pressedPaizuri from '../poses/pressedPaizuri';
 import paizuriSucking from '../poses/paizuriSucking';
+import missionary from '../poses/missionary';
+import cowgirl from '../poses/cowgirl';
+import facingSeated from '../poses/facingSeated';
+import doggy from '../poses/doggy';
+import doggyChair from '../poses/doggyChair';
+import doggySeat from '../poses/doggySeat';
+import doggyDesk from '../poses/doggyDesk';
+import doggyWall from '../poses/doggyWall';
+import doggyWallLifted from '../poses/doggyWallLifted';
+import doggyLying from '../poses/doggyLying';
+import doggyFence from '../poses/doggyFence';
+import doggyPool from '../poses/doggyPool';
+import doggyArmDesk from '../poses/doggyArmDesk';
+import piledriver from '../poses/piledriver';
+import doggyHorse from '../poses/doggyHorse';
+import standing from '../poses/standing';
+import ekiben from '../poses/ekiben';
+import ekibenFence from '../poses/ekibenFence';
+import facingWall from '../poses/facingWall';
+import layingDesk from '../poses/layingDesk';
+import matingPress from '../poses/matingPress';
+import pressedBehind from '../poses/pressedBehind';
 
 interface IStroke {
 	position: number,
@@ -29,8 +51,8 @@ interface IStroke {
 
 export interface ICsv {
 	name: string,
-	size: number,
-	sha256?: string
+	size?: number,
+	sha256: string
 }
 
 export interface IState {
@@ -41,7 +63,7 @@ export interface IState {
 }
 
 export interface IInfoPose {
-	names: TSupportedAnims[],
+	aliases: TSupportedAnims[],
 	states: IState[],
 	csv: ICsv
 }
@@ -66,7 +88,30 @@ const combinedPoses: IInfoPose[] = [
 	assistedPaizuri,
 	assistedPaizuriHigh,
 	pressedPaizuri,
-	paizuriSucking
+	paizuriSucking,
+
+	missionary,
+	piledriver,
+	cowgirl,
+	facingSeated,
+	facingWall,
+	doggy,
+	doggyChair,
+	doggyDesk,
+	doggyArmDesk,
+	doggySeat,
+	doggyWall,
+	doggyWallLifted,
+	doggyPool,
+	doggyFence,
+	doggyLying,
+	doggyHorse,
+	standing,
+	ekiben,
+	ekibenFence,
+	layingDesk,
+	matingPress,
+	pressedBehind
 ];
 
 export default combinedPoses;

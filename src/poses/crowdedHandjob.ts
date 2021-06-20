@@ -2,7 +2,9 @@ import {IInfoPose} from '../csv/combinedPoses';
 import ELoopType from '../types/ELoopType';
 
 const crowdedHandjob: IInfoPose = {
-	names: ['Crowded Handjob'],
+	aliases: [
+		'Crowded Handjob', '密着手コキ',
+	],
 	states: [
 		{
 			names: ['Idle'],
@@ -59,7 +61,7 @@ const crowdedHandjob: IInfoPose = {
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['OUT_A'],
@@ -73,12 +75,12 @@ const crowdedHandjob: IInfoPose = {
 					position: 70
 				},
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		}
 	],
 	csv: {
 		name: 'ch.csv',
-		size: 32641
+		sha256: '92576532a97b6d76cdc1faa89f1c2ee11914b1f31b48981995ae525199d2042b'
 	}
 }
 

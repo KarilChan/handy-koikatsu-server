@@ -1,14 +1,19 @@
-import TSupportedAnimStates from './types/TSupportedAnimStates';
-
-const SUPPORTED_STATES: TSupportedAnimStates[] = [
+const SUPPORTED_STATES = [
 	'Idle',
-	'WLoop', // default state?
-	'SLoop', // alt motion (right click)
-	'OLoop', // pre-orgasm phase
-	'M_OUT_Start', // handjob cumming
-	'M_OUT_Loop', // handjob cumming
-	'OUT_A', // idle after cumming
-	'IN_Start', // cumming inside
+	'A_Idle',
+	'WLoop',
+	'SLoop',
+	'OLoop',
+	'A_WLoop',
+	'A_SLoop',
+	'A_OLoop',
+	'M_OUT_Start',
+	'M_OUT_Loop',
+	'A_M_OUT_Start',
+	'A_M_OUT_Loop',
+	'OUT_A',
+	'A_OUT_A',
+	'IN_Start',
 	'IN_Loop',
 	'Oral_Idle', // holding cum in mouth
 	'Oral_Idle_IN',
@@ -21,14 +26,28 @@ const SUPPORTED_STATES: TSupportedAnimStates[] = [
 
 	'Insert',
 	'InsertIdle',
-	'WS_IN_Start',
+	'A_Insert',
+	'A_InsertIdle',
+	'WF_IN_Start', // female orgasm
+	'WF_IN_Loop',
+	'A_WF_IN_Start',
+	'A_WF_IN_Loop',
+	'WS_IN_Start', // double orgasm
 	'WS_IN_Loop',
 	'WS_IN_A',
+	'A_WS_IN_Start',
+	'A_WS_IN_Loop',
+	'A_WS_IN_A',
 	'M_IN_Start',
 	'M_IN_Loop',
 	'IN_A',
+	'A_M_IN_Start',
+	'A_M_IN_Loop',
+	'A_IN_A',
 	'Pull',
-	'Drop', // cum drip
-];
+	'Drop',
+	'A_Pull',
+	'A_Drop',
+] as const;
 
 export default SUPPORTED_STATES;

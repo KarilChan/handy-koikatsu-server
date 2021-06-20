@@ -2,7 +2,9 @@ import {IInfoPose} from '../csv/combinedPoses';
 import ELoopType from '../types/ELoopType';
 
 const noHandTipLicking: IInfoPose = {
-	names: ['Seated No-Hand Tip Licking'],
+	aliases: [
+		'Seated No-Hand Tip Licking', '椅子ノーハンド先舐め'
+	],
 	states: [
 		{
 			names: ['WLoop'],
@@ -47,7 +49,7 @@ const noHandTipLicking: IInfoPose = {
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['M_OUT_Start', 'M_OUT_Loop', 'OUT_A'],
@@ -57,12 +59,12 @@ const noHandTipLicking: IInfoPose = {
 					position: 0
 				},
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		}
 	],
 	csv: {
 		name: 'nhtl.csv',
-		size: 44656
+		sha256: '645b33bac25e6bf88c5878934f7ca32bd9ef550479a36b9c7506d4c16805998c'
 	}
 }
 

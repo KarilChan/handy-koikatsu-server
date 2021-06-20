@@ -6,10 +6,9 @@ export const handleNewPose = (model: NewPosePostModel, hInfo: HState, handy: Han
 	console.log(`handleNewPose(): nameAnimation = ${model.nameAnimation}`);
 	const newPose = hInfo.changePose(model.nameAnimation);
 	if (newPose) {
-		console.log('... which is a newPose');
 		handy.syncPrepare(newPose.csv)
-			.then(response => {
-				console.log(response);
+			.then(() => {
+				console.log('Script is ready');
 			})
 			.catch(err => console.log(err));
 	}

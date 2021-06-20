@@ -2,7 +2,9 @@ import ELoopType from '../types/ELoopType';
 import {IInfoPose} from '../csv/combinedPoses';
 
 const assistedPaizuriHigh: IInfoPose = 	{
-	names: ['Seated Hand-Assisted Paizuri'],
+	aliases: [
+		'Seated Hand-Assisted Paizuri', '椅子腕はさみパイズリ',
+	],
 	states: [
 		{
 			names: ['WLoop'],
@@ -45,7 +47,7 @@ const assistedPaizuriHigh: IInfoPose = 	{
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['M_OUT_Start', 'M_OUT_Loop'],
@@ -60,7 +62,7 @@ const assistedPaizuriHigh: IInfoPose = 	{
 				},
 			],
 			multiplier: 2,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['OUT_A'],
@@ -74,13 +76,12 @@ const assistedPaizuriHigh: IInfoPose = 	{
 					position: 95
 				},
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 	],
 	csv: {
 		name: 'apzh.csv',
-		size: 23088,
-		sha256: '380b2b000b36428198aaa75903331dc8a505455428d4b7955f5f56c18cfc9965'
+		sha256: 'af8a5256eb01c4f520f4a48d78db6bf2c4d8aa3ce7132b1921c11bceedece3fa'
 	}
 }
 

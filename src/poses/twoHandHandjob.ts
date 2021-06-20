@@ -2,7 +2,9 @@ import {IInfoPose} from '../csv/combinedPoses';
 import ELoopType from '../types/ELoopType';
 
 const twoHandHandjob: IInfoPose = 	{
-	names: ['Two-Hand Handjob'],
+	aliases: [
+		'Two-Hand Handjob', '両手コキ',
+	],
 	states: [
 		{
 			names: ['WLoop'],
@@ -45,7 +47,7 @@ const twoHandHandjob: IInfoPose = 	{
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['OUT_A'],
@@ -59,12 +61,12 @@ const twoHandHandjob: IInfoPose = 	{
 					position: 10
 				},
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		}
 	],
 	csv: {
 		name: 'thh.csv',
-		size: 21591
+		sha256: 'f7df7691b9097641214a529aac6a576045ca9b81caca9a6804725e59c7da49bf'
 	}
 };
 

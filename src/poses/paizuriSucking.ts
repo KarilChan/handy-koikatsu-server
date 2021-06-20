@@ -2,7 +2,11 @@ import ELoopType from '../types/ELoopType';
 import {IInfoPose} from '../csv/combinedPoses';
 
 const paizuri: IInfoPose = {
-	names: ['Paizuri & Sucking', 'Seated Paizuri & Sucking', 'Standing Paizuri & Sucking'],
+	aliases: [
+		'Paizuri & Sucking', 'パイズリ+咥え',
+		'Seated Paizuri & Sucking', '椅子パイズリ+咥え',
+		'Standing Paizuri & Sucking', '立ちパイズリ+咥え',
+	],
 	states: [
 		{
 			names: ['WLoop'],
@@ -45,7 +49,7 @@ const paizuri: IInfoPose = {
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['M_OUT_Start', 'M_OUT_Loop'],
@@ -60,7 +64,7 @@ const paizuri: IInfoPose = {
 				},
 			],
 			multiplier: 2,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['IN_Start', 'IN_Loop'],
@@ -75,7 +79,7 @@ const paizuri: IInfoPose = {
 				}
 			],
 			multiplier: 2,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['Oral_Idle', 'Oral_Idle_IN', 'Drink_IN', 'Drink', 'Drink_A', 'Vomit', 'Vomit_IN', 'Vomit_A', 'OUT_A'],
@@ -89,12 +93,12 @@ const paizuri: IInfoPose = {
 					position: 65
 				},
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		}
 	],
 	csv: {
 		name: 'pzs.csv',
-		size: 22362
+		sha256: 'fae4e5d36698137dd1bac4a1aec682beee34b277f6d4b8359283c9bdf190740f'
 	}
 }
 

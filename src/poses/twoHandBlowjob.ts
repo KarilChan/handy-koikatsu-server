@@ -2,7 +2,11 @@ import ELoopType from '../types/ELoopType';
 import {IInfoPose} from '../csv/combinedPoses';
 
 const twoHandBlowjob: IInfoPose = 	{
-	names: ['Two-Hand Blowjob', 'Seated Two-Hand Blowjob', 'Standing Two-Hand Blowjob'],
+	aliases: [
+		'Two-Hand Blowjob', '両手フェラ',
+		'Seated Two-Hand Blowjob', '椅子両手フェラ',
+		'Standing Two-Hand Blowjob', '立ち両手フェラ',
+	],
 	states: [
 		{
 			names: ['WLoop'],
@@ -49,7 +53,7 @@ const twoHandBlowjob: IInfoPose = 	{
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['IN_Start', 'IN_Loop'],
@@ -64,7 +68,7 @@ const twoHandBlowjob: IInfoPose = 	{
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['M_OUT_Start', 'M_OUT_Loop'],
@@ -79,7 +83,7 @@ const twoHandBlowjob: IInfoPose = 	{
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['OUT_A', 'Oral_Idle', 'Oral_Idle_IN', 'Drink_IN', 'Drink', 'Drink_A', 'Vomit', 'Vomit_IN', 'Vomit_A'],
@@ -89,13 +93,12 @@ const twoHandBlowjob: IInfoPose = 	{
 					position: 0
 				}
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		}
 	],
 	csv: {
 		name: 'thb.csv',
-		size: 28514,
-		sha256: '8f7828172fbe7afc8abe0b0e35106e7f59d1256039c7b86a5487c3099136cbe7'
+		sha256: '45d92509062c048e7cd8ba0ddc2f0f3b985a993cfd1ba416968c2e437b0d4366'
 	}
 }
 

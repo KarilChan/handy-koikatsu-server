@@ -2,7 +2,9 @@ import {IInfoPose} from '../csv/combinedPoses';
 import ELoopType from '../types/ELoopType';
 
 const benchBlowjob: IInfoPose = {
-	names: ['Bench Blowjob'],
+	aliases: [
+		'Bench Blowjob', 'ベンチフェラ',
+	],
 	states: [
 		{
 			names: ['WLoop'],
@@ -45,7 +47,7 @@ const benchBlowjob: IInfoPose = {
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['M_OUT_Start', 'M_OUT_Loop'],
@@ -60,7 +62,7 @@ const benchBlowjob: IInfoPose = {
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['OUT_A', 'Oral_Idle', 'Oral_Idle_IN', 'Drink_IN', 'Drink', 'Drink_A', 'Vomit', 'Vomit_IN', 'Vomit_A'],
@@ -70,12 +72,12 @@ const benchBlowjob: IInfoPose = {
 					position: 100
 				},
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		}
 	],
 	csv: {
 		name: 'bb.csv',
-		size: 22477
+		sha256: '7c6021c5152a662f2950fb1ac3a44b7aa6cd2ab6d31d0050edc6de30d55c46cb'
 	}
 }
 

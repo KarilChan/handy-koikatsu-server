@@ -14,12 +14,12 @@ export const CSV_RESOLUTION = 31;
 /**
  * Time per speed interval, longer means less frequent readjustments
  */
-export const CSV_TIME_PER_INTERVAL = 13 * 1000;
+export const CSV_TIME_PER_LOOP = 13 * 1000;
 
 /**
  * Time allocated for each manual scripted animState
  */
-export const CSV_TIME_PER_MANUAL = 30 * 1000;
+export const CSV_TIME_PER_SINGLE = 5 * 1000;
 
 export const KK_SPEED_MIN = 1;
 export const KK_SPEED_MAX = 2.5;
@@ -43,19 +43,19 @@ export default class HandyCsv {
 		nameAnim: TSupportedAnims,
 		animState: TSupportedAnimStates
 	): number {
-		const anim = combinedPoses.find(pose => pose.names.includes(nameAnim));
+		const anim = combinedPoses.find(pose => pose.aliases.includes(nameAnim));
 		if (typeof anim === 'undefined') {
 			return -1;
 		}
 		const animStateIndex = anim.states
 			.findIndex(state => state.names.includes(animState));
-		if (animStateIndex === -1 ) {
+		if (animStateIndex === -1) {
 			return -1;
 		}
 		const closestInterval = this.calcClosestInterval(unityAnimState.speedMultiplier);
-		const startTime = this.getStateStartTimeByPose(anim, animState) + closestInterval * CSV_TIME_PER_INTERVAL;
-		const strokeOffset = unityAnimState.length * 1000 *  (unityAnimState.normalizedTime % 1)
-
+		const startTime = this.getStateStartTimeByPose(anim, animState) + closestInterval * CSV_TIME_PER_LOOP;
+		const strokeOffset = (unityAnimState.length * 1000) * (unityAnimState.normalizedTime % 1)
+		console.log('calcStartTime', unityAnimState.length, unityAnimState.normalizedTime);
 		return startTime + strokeOffset;
 	}
 
@@ -85,7 +85,7 @@ export default class HandyCsv {
 	}
 
 	private static getPoseByName(nameAnim: TSupportedAnims): IInfoPose {
-		const pose = combinedPoses.find(infoPose => infoPose.names.includes(nameAnim));
+		const pose = combinedPoses.find(infoPose => infoPose.aliases.includes(nameAnim));
 		if (typeof pose === 'undefined') {
 			throw new Error('This should never happen');
 		}
@@ -95,11 +95,11 @@ export default class HandyCsv {
 	public static getStateLength(state: IState): number {
 		switch (state.type) {
 			case ELoopType.variable:
-				return CSV_TIME_PER_INTERVAL * CSV_RESOLUTION;
+				return CSV_TIME_PER_LOOP * CSV_RESOLUTION;
+			case ELoopType.static:
+				return CSV_TIME_PER_LOOP;
 			case ELoopType.single:
-				return CSV_TIME_PER_INTERVAL;
-			case ELoopType.manual:
-				return CSV_TIME_PER_MANUAL;
+				return CSV_TIME_PER_SINGLE;
 		}
 	}
 
@@ -115,13 +115,13 @@ export default class HandyCsv {
 			return false;
 		}
 		// check if different state names but same state
-		const pose = combinedPoses.find(p => p.names.includes(nameAnim));
+		const pose = combinedPoses.find(p => p.aliases.includes(nameAnim));
 		if (typeof pose === 'undefined') {
-			throw new Error('This should never happen');
+			throw new Error(`This should never happen ${nameAnim}`);
 		}
 		const state = pose.states.find(s => s.names.includes(a));
 		if (typeof state === 'undefined') {
-			throw new Error('This should never happen');
+			throw new Error(`This should never happen ${a}`);
 		}
 		return state.names.includes(b);
 	}

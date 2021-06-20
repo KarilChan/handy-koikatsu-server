@@ -20,7 +20,7 @@ export class HState {
 		return this.animState;
 	}
 
-	public getNameAnim(): HState['nameAnimation'] {
+	public getNameAnim(): TSupportedAnims | null {
 		return this.nameAnimation;
 	}
 
@@ -38,7 +38,7 @@ export class HState {
 		const newState = HState.isSupportedState(state) ? state : null;
 		this.animState = newState;
 		if (HandyCsv.isSameAnimStates(nameAnim, newState, oldState)) {
-		// if (newState === oldState) {
+			// if (newState === oldState) {
 			return {
 				changed: false,
 				newState,
@@ -62,7 +62,7 @@ export class HState {
 		if (HState.isSupportedAnim(newAnimation)) {
 			console.log(`${newAnimation} isSupportedAnime`);
 			this.nameAnimation = newAnimation;
-			return combinedPoses.find(pose => pose.names.includes(newAnimation)) as IInfoPose;
+			return combinedPoses.find(pose => pose.aliases.includes(newAnimation)) as IInfoPose;
 		} else {
 			this.nameAnimation = null;
 			return null;

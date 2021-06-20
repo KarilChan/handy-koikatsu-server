@@ -2,7 +2,10 @@ import ELoopType from '../types/ELoopType';
 import {IInfoPose} from '../csv/combinedPoses';
 
 const oneHandBlowjob: IInfoPose = 	{
-	names: ['One-Hand Blowjob', 'Standing One-Hand Blowjob'],
+	aliases: [
+		'One-Hand Blowjob', '片手フェラ',
+		'Standing One-Hand Blowjob', '立ち片手フェラ',
+	],
 	states: [
 		{
 			names: ['WLoop'],
@@ -49,7 +52,7 @@ const oneHandBlowjob: IInfoPose = 	{
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['IN_Start', 'IN_Loop'],
@@ -64,7 +67,7 @@ const oneHandBlowjob: IInfoPose = 	{
 				}
 			],
 			multiplier: 2.5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['M_OUT_Start', 'M_OUT_Loop'],
@@ -79,7 +82,7 @@ const oneHandBlowjob: IInfoPose = 	{
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['OUT_A'],
@@ -93,23 +96,22 @@ const oneHandBlowjob: IInfoPose = 	{
 					position: 40
 				}
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
-			names: ['Oral_Idle', 'Oral_Idle_IN', 'Drink_IN', 'Drink', 'Drink_A', 'Vomit', 'Vomit_IN', 'Vomit_A'],
+			names: ['Oral_Idle', 'Oral_Idle_IN', 'Drink_IN', 'Drink', 'Drink_A', 'Vomit', 'Vomit_IN', 'Vomit_A', 'Idle'],
 			strokes: [
 				{
 					time: 0,
 					position: 100
 				}
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		}
 	],
 	csv: {
 		name: 'ohb.csv',
-		size: 28280,
-		sha256: '39effefef0a7f82cb1d948b2bb40f94ea90a36f2e2ecd2298135c10231e31b33'
+		sha256: '6daeb8526fc0ac0a0c804601256e555bcdeb9368911347b6610ed1158dc3b114'
 	}
 }
 

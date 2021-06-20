@@ -2,7 +2,9 @@ import ELoopType from '../types/ELoopType';
 import {IInfoPose} from '../csv/combinedPoses';
 
 const tipShaftLicking: IInfoPose = 	{
-	names: ['Tip & Shaft Licking'],
+	aliases: [
+		'Tip & Shaft Licking', '先舐め＋竿舐め',
+	],
 	states: [
 		{
 			names: ['WLoop'],
@@ -46,7 +48,7 @@ const tipShaftLicking: IInfoPose = 	{
 				}
 			],
 			multiplier: 5,
-			type: ELoopType.single
+			type: ELoopType.static
 		},
 		{
 			names: ['OUT_A'],
@@ -60,12 +62,12 @@ const tipShaftLicking: IInfoPose = 	{
 					position: 10
 				},
 			],
-			type: ELoopType.single
+			type: ELoopType.static
 		}
 	],
 	csv: {
 		name: 'tsl.csv',
-		size: 32003
+		sha256: '1e0fda060cb647def9b70d7916b8710be0d6eee4b4d9dd6cc990784040ddb4bb'
 	}
 }
 

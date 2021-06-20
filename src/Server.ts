@@ -8,8 +8,18 @@ import {handleLoop} from './controllers/loopController';
 import {handleStop} from './controllers/stopController';
 import {handleSpeedChg} from './controllers/speedChgController';
 import HandyApiV2 from './HandyApi/HandyApiV2';
+import winston from 'winston';
 
 export default class Server {
+
+	private logger = winston.createLogger({
+		level: 'info',
+		format: winston.format.combine(winston.format.timestamp(), winston.format.simple()),
+		transports: [
+			new winston.transports.File({filename: 'error.log', level: 'error'}),
+			new winston.transports.File({filename: 'combined.log'}),
+		],
+	});
 
 	private _currentState = '';
 
@@ -31,13 +41,20 @@ export default class Server {
 			.then(() => {
 				this.handy.syncTime()
 					.catch(err => {
+						if (process.env.NODE_ENV === 'development' || true) {
+							return;
+						}
 						console.error(err);
 						throw new Error('Cannot initialize, failed to sync time');
 					});
 				this.registerRoutes();
 			})
 			.catch(() => {
-				throw new Error('Cannot initialize, failed to check for online status');
+				if (process.env.NODE_ENV === 'development' || true) {
+					this.registerRoutes();
+				} else {
+					throw new Error('Cannot initialize, failed to check for online status');
+				}
 			});
 	}
 
@@ -64,6 +81,7 @@ export default class Server {
 		})
 
 		this.app.post('/newPose', (req: Request<unknown, unknown, NewPosePostModel>, res) => {
+			this.logger.error(req.body.nameAnimation);
 			handleNewPose(req.body, this.hInfo, this.handy);
 			res.send();
 		})
@@ -79,6 +97,7 @@ export default class Server {
 
 		this.app.post('/speedChg', (req: Request<unknown, unknown, LoopPostModel>, res) => {
 			// handleLoop(req.body, this.hInfo, this.handy, false);
+			console.log('speed change');
 			handleSpeedChg(req.body, this.hInfo, this.handy);
 			res.send();
 		})
