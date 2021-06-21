@@ -18,7 +18,7 @@ interface ICsvStroke {
 for (const pose of combinedPoses) {
 	const strokes: ICsvStroke[] = [];
 	const states = pose.states;
-	// theHandy ignores the first line of the csv, use it to store metadata
+	// Handy ignores the first line of csv, use it to store metadata
 	const firstLine = `# ${pose.aliases[0]} / Resolution: ${CSV_RESOLUTION} / Interval length: ${CSV_TIME_PER_LOOP}ms \n`;
 
 	states.forEach((state, index) => {
@@ -72,7 +72,7 @@ for (const pose of combinedPoses) {
 
 	json2csv(strokes, (err, csv) => {
 		if (!csv) {
-			console.log('CSV Error', err?.message);
+			console.error('CSV Error', err?.message);
 		} else {
 			fs.writeFileSync(`scripts/${pose.csv.name}`, firstLine + csv);
 		}

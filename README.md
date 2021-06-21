@@ -1,33 +1,33 @@
 ## Koikatsu x Handy server
 
-This Node server receives game data from the [KK Handy plugin](https://github.com/KarilChan/KKHandyPlugin) and communicates with the Handy API to synchronize
-Handy strokes.
+This Node server receives game data from the [KK Handy plugin](https://github.com/KarilChan/KKHandyPlugin) and
+communicates with the Handy API to synchronize Handy strokes.
 [![Demo video](https://i.imgur.com/4uDn9eC.png)](https://www.youtube.com/watch?v=w1y0_ElPY-A "Demo video")
-
-
 
 ## Contents
 
 * [Installation](#installation)
-* [Instructions](#instructions)
-* [Config](#config-file-env)
+* [Config file](#config-file-env)
+* [Handy firmware compatability](#handy-firmware-compatability)
 * [How it works](#how-it-works)
 * [Known issues](#known-issues)
 * [Roadmap](#roadmap)
 
 ## Installation
 
-* Install [KK Handy plugin](https://github.com/KarilChan/KKHandyPlugin) into your Koikatsu game folder
-* Install the latest version of [Node](https://nodejs.org/en/)
-* Clone this project
-
-## Instructions
-
-`node dist/index.js`
+* Install [KK Handy plugin](https://github.com/KarilChan/KKHandyPlugin)
+* Download the [latest precompiled release](https://github.com/KarilChan/handy-koikatsu-server/releases) for this project
+    * Alternatively, if you have Node you may compile this yourself
+      ```shell
+      git clone https://github.com/KarilChan/handy-koikatsu-server.git
+      npm install
+      npm run build
+      node dist/index.js # Start the server
+      ```
+* Edit the `.env.example` config file and rename it to `.env`
 
 ### Config file (.env)
 
-* A sample config file (.env.example)
 * `HANDY_KEY`
     * Your [Handy connection key](https://www.handysetup.com/en/docs/troubleshooting/find-connection-key/)
 * `SERVER_PORT`
@@ -41,11 +41,7 @@ Handy strokes.
 * FW3
     * 3.0.0-3.0.1 works fine.
     * 3.0.3 is bugged and can't play csv files over 40kb, therefore some doggystyle poses are unavailable.
-
-### Example command
-
-`node dist/index.js --port 42070 --key Abc123`
-
+  
 ## How it works
 
 todo
