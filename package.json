@@ -1,6 +1,6 @@
 {
   "name": "handy-kk-server",
-  "version": "1.0.0-alpha",
+  "version": "1.0.1-alpha",
   "description": "Listens for requests from koikatsu-handy-plugin and calls the Handy API to control the device.",
   "keywords": [
     "thehandy",
@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "build": "npm run clean && npm run lint && tsc",
-    "clean": "(rd /s/q dist || true)",
+    "clean": "mkdir dist || rmdir /s/q dist",
     "clean:all": "npm run clean && (rd /s/q node_modules || true)",
     "compile": "npm run build && npm run pkg",
     "lint": "eslint src/**/*.ts",

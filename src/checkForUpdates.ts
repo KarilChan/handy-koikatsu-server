@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {version} from '../package.json';
 
 interface GHLatestResp {
 	tag_name: string
@@ -7,8 +8,8 @@ interface GHLatestResp {
 export const checkForUpdates = (): void => {
 	axios.get<GHLatestResp>('https://api.github.com/repos/KarilChan/handy-koikatsu-server/releases/latest')
 		.then(resp => {
-			if (resp.data.tag_name !== process.env.npm_package_version) {
-				console.log(`New version ${resp.data.tag_name} is available!`)
+			if (resp.data.tag_name !== version) {
+				console.log(`Newer version ${resp.data.tag_name} is available!`)
 			}
 		})
 		.catch(() => {

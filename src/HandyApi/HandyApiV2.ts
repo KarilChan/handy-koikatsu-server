@@ -11,6 +11,9 @@ import {V2HSSPSetupResult} from '../types/handyApiV2/V2HSSPSetupResult';
 import {V2HSSPSetupResponse} from '../types/handyApiV2/V2HSSPSetupResponse';
 import {V2HsspPlayRequest} from '../types/handyApiV2/V2HsspPlayRequest';
 import {createAxiosInstance} from './createAxiosInstance';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import {version} from '../../package.json';
 
 export default class HandyApiV2 {
 
@@ -26,7 +29,7 @@ export default class HandyApiV2 {
 	 * Where the pre-generated scripts are hosted
 	 * You can run generateCsv.ts to create your own scripts
 	 */
-	private readonly scriptBaseUrl = `https://www.karil.rs/handykk/${process.env.npm_package_version || ''}/`;
+	private readonly scriptBaseUrl = `https://www.karil.rs/handykk/${version}/`;
 
 	private lastAdjust = Date.now();
 	private readonly debounceMs = 9 * 1000;
