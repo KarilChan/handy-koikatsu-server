@@ -54,8 +54,7 @@ export default class HandyCsv {
 		}
 		const closestInterval = this.calcClosestInterval(unityAnimState.speedMultiplier);
 		const startTime = this.getStateStartTimeByPose(anim, animState) + closestInterval * CSV_TIME_PER_LOOP;
-		const strokeOffset = (unityAnimState.length * 1000) * (unityAnimState.normalizedTime % 1)
-		console.log('calcStartTime', unityAnimState.length, unityAnimState.normalizedTime);
+		const strokeOffset = KK_LOOP_BASE_LENGTH * (unityAnimState.normalizedTime % 1)
 		return startTime + strokeOffset;
 	}
 

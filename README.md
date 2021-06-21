@@ -39,7 +39,7 @@ communicates with the Handy API to synchronize Handy strokes.
 * FW2 (unsupported)
     * Script seeking is slow, device will freeze from time to time to adjust.
 * FW3
-    * 3.0.0-3.0.1 works fine.
+    * 3.0.0 works fine.
     * 3.0.3 is bugged and can't play csv files over 40kb, therefore some doggystyle poses are unavailable.
   
 ## How it works
@@ -63,10 +63,10 @@ todo
 
 ## Roadmap
 
-- [x] Finish scripting all poses
+- [x] Finish scripting all poses in main H mode
     - [x] Service
     - [ ] Caress
     - [x] Penetration
-- [ ] Web interface for controlling slider length / other stuff
+- [ ] Finish scripting all poses in Darkness mode
 - [ ] Support other Illusion games
 - [ ] Support random speed (might not be possible)
