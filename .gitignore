@@ -7,3 +7,12 @@ scripts/
 
 # Project files:
 *.sublime-*
+
+# .env
+.env
+
+# Compiled binaries
+compiled/
+
+# Logs
+*.log

@@ -26,7 +26,7 @@ export default class HandyApiV2 {
 	 * Where the pre-generated scripts are hosted
 	 * You can run generateCsv.ts to create your own scripts
 	 */
-	private readonly scriptBaseUrl = 'https://www.karil.rs/handykk/';
+	private readonly scriptBaseUrl = `https://www.karil.rs/handykk/${process.env.npm_package_version || ''}/`;
 
 	private lastAdjust = Date.now();
 	private readonly debounceMs = 9 * 1000;

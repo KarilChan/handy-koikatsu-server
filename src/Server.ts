@@ -35,7 +35,7 @@ export default class Server {
 
 	public start(port: number): void {
 		this.app.use(bodyParser.json()).listen(port, () => {
-			console.log(`Listening at http://localhost:${port}`)
+			console.log(`Listening on port ${port}`)
 		})
 		this.timedCheckOnline()
 			.then(() => {

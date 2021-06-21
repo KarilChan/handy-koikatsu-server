@@ -1,27 +1,23 @@
 'use strict';
+import dotenv from 'dotenv';
 import Server from './Server';
-import yargs from 'yargs';
-import axios from 'axios';
-import * as https from 'https';
-/*
-import winston from 'winston';
+import {checkForUpdates} from './checkForUpdates';
 
-const logger = winston.createLogger({
-	level: 'info',
-	format: winston.format.combine(winston.format.timestamp() ,winston.format.simple()),
-	transports: [
-		new winston.transports.File({ filename: 'error.log', level: 'error' }),
-		new winston.transports.File({ filename: 'combined.log' }),
-	],
-});
+try {
+	if (
+		dotenv.config().error
+		|| !process.env.HANDY_KEY
+		|| !process.env.SERVER_PORT
+	) {
+		throw new Error('Failed to read .env config file');
+	}
 
-logger.error('hi');
-*/
-const argv = yargs(process.argv.slice(2)).options({
-	port: {type: 'number', default: 42070},
-	key: {type: 'string', demandOption: true, description: 'Handy connection key'},
-}).argv;
-
-const server = new Server(argv.key);
-server.start(argv.port);
-
+	checkForUpdates();
+	const server = new Server(process.env.HANDY_KEY);
+	server.start(Number(process.env.SERVER_PORT));
+} catch (e) {
+	console.error(e);
+	console.log('Press any key to exit');
+	process.stdin.setRawMode(true);
+	process.stdin.on('data', () => process.exit(1));
+}
