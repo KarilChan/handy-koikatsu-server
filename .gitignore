@@ -11,8 +11,5 @@ scripts/
 # .env
 .env
 
-# Compiled binaries
-compiled/
-
 # Logs
 *.log
