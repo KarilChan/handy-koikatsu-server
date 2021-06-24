@@ -67,7 +67,8 @@ const tipShaftLicking: IInfoPose = 	{
 	],
 	csv: {
 		name: 'tsl.csv',
-		sha256: '1e0fda060cb647def9b70d7916b8710be0d6eee4b4d9dd6cc990784040ddb4bb'
+		sha256: '1e0fda060cb647def9b70d7916b8710be0d6eee4b4d9dd6cc990784040ddb4bb',
+		size: 31977
 	}
 }
 

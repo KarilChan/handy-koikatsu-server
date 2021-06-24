@@ -1,6 +1,6 @@
 {
   "name": "handy-kk-server",
-  "version": "1.0.2-alpha",
+  "version": "1.0.3-alpha",
   "description": "Listens for requests from koikatsu-handy-plugin and calls the Handy API to control the device.",
   "keywords": [
     "thehandy",
@@ -45,6 +45,7 @@
     "nyc": "^15.0.0",
     "pkg": "^5.2.1",
     "source-map-support": "^0.5.12",
+    "thehandy": "github:KarilChan/thehandy",
     "ts-node": "^9.0.0",
     "tslint": "^6.0.0",
     "typescript": "^4.0.3"

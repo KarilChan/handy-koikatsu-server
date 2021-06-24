@@ -39,28 +39,30 @@ const facingWall: IInfoPose = {
 			strokes: [
 				{
 					time: 0,
-					position: 5
+					position: 55
 				},
 				{
 					time: 0.5,
-					position: 55
+					position: 5
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 65
 				},
 				{
 					time: 0.5,
-					position: 65
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['OLoop'],
@@ -120,7 +122,8 @@ const facingWall: IInfoPose = {
 	],
 	csv: {
 		name: 'sfw.csv',
-		sha256: 'd9ebfd099892bf963c1a7a21df90c871bbfe78106c070d66c71d7c6d62fc9659'
+		sha256: '9309591fd2637fbe0263c878c0ef0974e28c4feda9488a2d05f490a88f184e25',
+		size: 24790
 	}
 }
 

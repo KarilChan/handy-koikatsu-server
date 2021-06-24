@@ -76,7 +76,8 @@ const sittingBlowjob: IInfoPose = 	{
 	],
 	csv: {
 		name: 'sb.csv',
-		sha256: '798e784e7828489b2e8221149a381f1141a7563a245b900ca3996dc63e44df0d'
+		sha256: '798e784e7828489b2e8221149a381f1141a7563a245b900ca3996dc63e44df0d',
+		size: 21763
 	}
 }
 

@@ -77,7 +77,8 @@ const benchBlowjob: IInfoPose = {
 	],
 	csv: {
 		name: 'bb.csv',
-		sha256: '7c6021c5152a662f2950fb1ac3a44b7aa6cd2ab6d31d0050edc6de30d55c46cb'
+		sha256: '7c6021c5152a662f2950fb1ac3a44b7aa6cd2ab6d31d0050edc6de30d55c46cb',
+		size: 22451
 	}
 }
 

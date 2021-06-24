@@ -1,9 +1,12 @@
-import HandyApiV2 from '../HandyApi/HandyApiV2';
+import {HandyApi} from '../HandyApi/HandyApi';
 
-export const handleStop = (handy: HandyApiV2): void => {
+export const handleStop = (handy: HandyApi): void => {
 	void handy.syncPause()
 		.then(() => {
-			void handy.syncTime();
+			handy.syncTime()
+				.catch(() => {
+					console.warn('Failed to sync time after pausing');
+				});
 		})
 		.catch(() => {
 			// theHandy is disconnected or stopped already

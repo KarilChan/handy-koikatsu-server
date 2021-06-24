@@ -111,7 +111,8 @@ const oneHandBlowjob: IInfoPose = 	{
 	],
 	csv: {
 		name: 'ohb.csv',
-		sha256: '6daeb8526fc0ac0a0c804601256e555bcdeb9368911347b6610ed1158dc3b114'
+		sha256: '6daeb8526fc0ac0a0c804601256e555bcdeb9368911347b6610ed1158dc3b114',
+		size: 28254
 	}
 }
 

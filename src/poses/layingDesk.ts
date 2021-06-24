@@ -39,28 +39,30 @@ const layingDesk: IInfoPose = 	{
 			strokes: [
 				{
 					time: 0,
-					position: 5
+					position: 50
 				},
 				{
 					time: 0.475,
-					position: 50
+					position: 5
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 50
 				},
 				{
 					time: 0.56,
-					position: 50
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['OLoop'],
@@ -120,7 +122,8 @@ const layingDesk: IInfoPose = 	{
 	],
 	csv: {
 		name: 'layd.csv',
-		sha256: '25738fd7d9c2e3dacc54bfdb87a67042135549c80ba54815f8d3ed07bd3e66b9'
+		sha256: '7482d44a3a80742fcfe7cdf510fe84673b30bffbef05dc4aebddf822815c1f9e',
+		size: 24832
 	}
 }
 

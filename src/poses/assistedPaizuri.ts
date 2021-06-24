@@ -82,7 +82,8 @@ const assistedPaizuri: IInfoPose = 	{
 	],
 	csv: {
 		name: 'apz.csv',
-		sha256: 'a0356fdbc64d17f6c64ebce4df31de18b9b6c3ead64722f27fa93939bf7750c4'
+		sha256: 'a0356fdbc64d17f6c64ebce4df31de18b9b6c3ead64722f27fa93939bf7750c4',
+		size: 21960
 	}
 }
 

@@ -43,39 +43,41 @@ const spooningSeated: IInfoPose = {
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 55
 				},
 				{
 					time: 0.5,
-					position: 55
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 65
 				},
 				{
 					time: 0.5,
-					position: 65
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['OLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 45
 				},
 				{
 					time: 0.5,
-					position: 45
+					position: 0
 				}
 			],
 			multiplier: 5,
@@ -138,7 +140,8 @@ const spooningSeated: IInfoPose = {
 	],
 	csv: {
 		name: 'sps.csv',
-		sha256: '291502756e8788e20721ff8d09ab52733313a446d0c1213b9b09f029ee91d914'
+		sha256: '72c0d2e918d192202f6b9598df5098c5ea7e2cc8693ce32a9622a431bd7e3bd8',
+		size: 24973
 	}
 }
 

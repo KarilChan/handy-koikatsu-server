@@ -5,7 +5,7 @@ interface GHLatestResp {
 	tag_name: string
 }
 
-export const checkForUpdates = (): void => {
+export const checkForUpdates = (): Promise<void> => new Promise(resolve => {
 	axios.get<GHLatestResp>('https://api.github.com/repos/KarilChan/handy-koikatsu-server/releases/latest')
 		.then(resp => {
 			if (resp.data.tag_name !== version) {
@@ -15,4 +15,7 @@ export const checkForUpdates = (): void => {
 		.catch(() => {
 			console.warn('Failed to check for update');
 		})
-}
+		.finally(() => {
+			return resolve();
+		})
+})

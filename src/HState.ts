@@ -14,7 +14,6 @@ interface IAnimStateChangeResponse {
 export class HState {
 	private nameAnimation: TSupportedAnims | null = null;
 	private animState: TSupportedAnimStates | null = null;
-	private playing = false;
 
 	public getState(): HState['animState'] {
 		return this.animState;
@@ -24,11 +23,6 @@ export class HState {
 		return this.nameAnimation;
 	}
 
-	/**
-	 * Idle is counted as unsupported state as there is no motion
-	 *
-	 * @param state
-	 */
 	public static isSupportedState(state: string): state is TSupportedAnimStates {
 		return !!SUPPORTED_STATES.find(s => s === state);
 	}
@@ -38,7 +32,6 @@ export class HState {
 		const newState = HState.isSupportedState(state) ? state : null;
 		this.animState = newState;
 		if (HandyCsv.isSameAnimStates(nameAnim, newState, oldState)) {
-			// if (newState === oldState) {
 			return {
 				changed: false,
 				newState,
@@ -54,9 +47,7 @@ export class HState {
 	}
 
 	/**
-	 * Returns false if animation not supported
-	 *
-	 * @param newAnimation
+	 * Returns null if animation not supported
 	 */
 	public changePose(newAnimation: string): IInfoPose | null {
 		if (HState.isSupportedAnim(newAnimation)) {

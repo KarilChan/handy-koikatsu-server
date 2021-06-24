@@ -64,7 +64,8 @@ const noHandTipLicking: IInfoPose = {
 	],
 	csv: {
 		name: 'nhtl.csv',
-		sha256: '645b33bac25e6bf88c5878934f7ca32bd9ef550479a36b9c7506d4c16805998c'
+		sha256: '645b33bac25e6bf88c5878934f7ca32bd9ef550479a36b9c7506d4c16805998c',
+		size: 44630
 	}
 }
 

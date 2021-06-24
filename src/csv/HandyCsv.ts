@@ -17,7 +17,7 @@ export const CSV_RESOLUTION = 31;
 export const CSV_TIME_PER_LOOP = 13 * 1000;
 
 /**
- * Time allocated for each manual scripted animState
+ * Time allocated for single strokes (insertions)
  */
 export const CSV_TIME_PER_SINGLE = 5 * 1000;
 
@@ -25,42 +25,39 @@ export const KK_SPEED_MIN = 1;
 export const KK_SPEED_MAX = 2.5;
 
 /**
- * KK H animation cycle length at 1x speed
+ * KK H animation cycle length at 1x speed multiplier
  */
 export const KK_LOOP_BASE_LENGTH = 4 / 3 * 1000;
 
 export default class HandyCsv {
 
 	/**
-	 * Returns -1 if anim/state not supported
-	 *
-	 * @param unityAnimState
-	 * @param nameAnim
-	 * @param animState
+	 * Returns -1 if anim/state is unsupported
 	 */
 	public static calcStartTime(
 		unityAnimState: IUnityAnimStateInfo,
 		nameAnim: TSupportedAnims,
-		animState: TSupportedAnimStates
+		animStateName: TSupportedAnimStates
 	): number {
 		const anim = combinedPoses.find(pose => pose.aliases.includes(nameAnim));
 		if (typeof anim === 'undefined') {
 			return -1;
 		}
-		const animStateIndex = anim.states
-			.findIndex(state => state.names.includes(animState));
-		if (animStateIndex === -1) {
+		const animState = anim.states
+			.find(state => state.names.includes(animStateName));
+		if (!animState) {
 			return -1;
 		}
-		const closestInterval = this.calcClosestInterval(unityAnimState.speedMultiplier);
-		const startTime = this.getStateStartTimeByPose(anim, animState) + closestInterval * CSV_TIME_PER_LOOP;
+		const stateOffset = this.getStateStartTimeByPose(anim, animStateName);
+		const intervalOffset = this.calcClosestInterval(unityAnimState.speedMultiplier, animState.maxMultiplier || 2.5)
+			* CSV_TIME_PER_LOOP;
 		const strokeOffset = KK_LOOP_BASE_LENGTH * (unityAnimState.normalizedTime % 1)
-		return startTime + strokeOffset;
+		return stateOffset + intervalOffset + strokeOffset;
 	}
 
-	private static calcClosestInterval(speedMulti: number): number {
-		const interval = (KK_SPEED_MAX - KK_SPEED_MIN) / (CSV_RESOLUTION - 1);
-		const closestMulti = Math.round((speedMulti - KK_SPEED_MIN) / interval) * interval + KK_SPEED_MIN;
+	private static calcClosestInterval(currentMulti: number, maxMulti: number): number {
+		const interval = (maxMulti - KK_SPEED_MIN) / (CSV_RESOLUTION - 1);
+		const closestMulti = Math.round((currentMulti - KK_SPEED_MIN) / interval) * interval + KK_SPEED_MIN;
 		return Number((closestMulti - KK_SPEED_MIN) / interval);
 	}
 

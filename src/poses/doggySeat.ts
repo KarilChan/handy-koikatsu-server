@@ -39,56 +39,60 @@ const doggySeat: IInfoPose = {
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 40
 				},
 				{
 					time: 0.5,
-					position: 40
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['A_WLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 35
 				},
 				{
 					time: 0.5,
-					position: 35
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 70
 				},
 				{
 					time: 0.4125,
-					position: 70
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['A_SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 75
 				},
 				{
 					time: 0.43,
-					position: 75
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['OLoop'],
@@ -170,7 +174,8 @@ const doggySeat: IInfoPose = {
 	],
 	csv: {
 		name: 'dogs.csv',
-		sha256: '9a88c55a8b88d06e296f7b5e2600d86c91860d3d0b1f374219bdf37e5d97f97b'
+		sha256: 'a0e7ae72491de83400012a2cd4abdb46fdb9743453f1498405732bd7804cc883',
+		size: 50327
 	}
 }
 

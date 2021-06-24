@@ -43,39 +43,41 @@ const spooningDesk: IInfoPose = {
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 65
 				},
 				{
 					time: 0.5,
-					position: 65
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 60
 				},
 				{
 					time: 0.45,
-					position: 60
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['OLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 60
 				},
 				{
 					time: 0.5,
-					position: 60
+					position: 0
 				}
 			],
 			multiplier: 5,
@@ -124,7 +126,8 @@ const spooningDesk: IInfoPose = {
 	],
 	csv: {
 		name: 'spd.csv',
-		sha256: '291502756e8788e20721ff8d09ab52733313a446d0c1213b9b09f029ee91d914'
+		sha256: '5d3e8fff06a5939f5911e8b019db30ccd53b0829fed45fc9296501128809e962',
+		size: 24792
 	}
 }
 

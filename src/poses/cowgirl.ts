@@ -1,7 +1,7 @@
 import ELoopType from '../types/ELoopType';
 import {IInfoPose} from '../csv/combinedPoses';
 
-const cowgirl: IInfoPose = 	{
+const cowgirl: IInfoPose = {
 	aliases: [
 		'Cowgirl', '騎乗位',
 		'Sofa Cowgirl', 'ソファ騎乗位',
@@ -47,21 +47,23 @@ const cowgirl: IInfoPose = 	{
 					position: 50
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3,
 		},
 		{
 			names: ['SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 80
 				},
 				{
 					time: 0.5,
-					position: 80
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3,
 		},
 		{
 			names: ['OLoop'],
@@ -94,7 +96,7 @@ const cowgirl: IInfoPose = 	{
 			type: ELoopType.static
 		},
 		{
-			names: ['IN_A', 'WS_IN_A','M_OUT_Loop', 'M_OUT_Start'],
+			names: ['IN_A', 'WS_IN_A', 'M_OUT_Loop', 'M_OUT_Start'],
 			strokes: [
 				{
 					time: 0,
@@ -121,7 +123,8 @@ const cowgirl: IInfoPose = 	{
 	],
 	csv: {
 		name: 'cg.csv',
-		sha256: '291502756e8788e20721ff8d09ab52733313a446d0c1213b9b09f029ee91d914'
+		sha256: '3d1fe285a6aa56b96f953656adcc92dea1fda24fe7b0a392485c15e49b832604',
+		size: 24767
 	}
 }
 

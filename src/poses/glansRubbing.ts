@@ -83,7 +83,8 @@ const glansRubbing: IInfoPose = {
 	],
 	csv: {
 		name: 'gr.csv',
-		sha256: '66c9e4ff0303a9019990b1313ebd8cfa073fd72993f4e555704fca3381ce17ad'
+		sha256: '66c9e4ff0303a9019990b1313ebd8cfa073fd72993f4e555704fca3381ce17ad',
+		size: 22557
 	}
 }
 

@@ -1,10 +1,10 @@
 import axios, {AxiosInstance} from 'axios';
 import https from 'https';
 
-export const createAxiosInstance = (connKey: string): AxiosInstance => {
+export const createAxiosInstance = (connKey: string, baseURL: string): AxiosInstance => {
 	const ax = axios.create({
-		baseURL: 'https://www.handyfeeling.com/api/handy/v2/',
-		timeout: 10 * 1000,
+		baseURL,
+		timeout: 30000,
 		headers: {'X-Connection-Key': connKey},
 		httpsAgent: new https.Agent({keepAlive: true})
 	});
@@ -12,5 +12,11 @@ export const createAxiosInstance = (connKey: string): AxiosInstance => {
 		console.log(`${config.url ?? ''} ${JSON.stringify(config.params) ?? ''} ${JSON.stringify(config.data) ?? ''}`);
 		return config;
 	})
+	/*
+		ax.interceptors.response.use(res => {
+			console.log(res.data);
+			return res;
+		})
+	*/
 	return ax;
 }

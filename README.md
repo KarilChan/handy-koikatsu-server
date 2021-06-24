@@ -6,12 +6,22 @@ communicates with the Handy API to synchronize Handy strokes.
 
 ## Contents
 
+* [Changelog](#changelog)
 * [Installation](#installation)
 * [Config file](#config-file-env)
 * [Handy firmware compatability](#handy-firmware-compatability)
 * [How it works](#how-it-works)
 * [Known issues](#known-issues)
 * [Roadmap](#roadmap)
+
+## Changelog
+### 1.0.3-alpha - 2021-06-25
+* Added support to FW2 devices. Turns out FW2 works better than FW3 at the moment.
+  * Using API v1 for FW2 devices.
+* Works without .env file.
+* Added 3 missing poses (spooning).
+* Penetration poses are now accurate and actually usable.
+* You can get the latest build [here](https://github.com/KarilChan/handy-koikatsu-server/releases).
 
 ## Installation
 
@@ -25,6 +35,7 @@ communicates with the Handy API to synchronize Handy strokes.
       node dist/index.js # Start the server
       ```
 * Edit the `.env.example` config file and rename it to `.env`
+* Run `kk-handy-server.exe` before starting H scenes
 
 ### Config file (.env)
 
@@ -44,7 +55,7 @@ communicates with the Handy API to synchronize Handy strokes.
   
 ## How it works
 
-todo
+A csv file is generated for each pose (or similar poses)
 
 ## Why do I need this besides the Koikatsu plugin?
 

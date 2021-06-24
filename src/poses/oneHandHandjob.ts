@@ -68,7 +68,8 @@ const oneHandHandjob: IInfoPose = 	{
 	],
 	csv: {
 		name: 'ohh.csv',
-		sha256: '427c813aa1376cce343bb3c3be5f06306132d9bc3d7250a4efc53cc7b30b56e9'
+		sha256: '427c813aa1376cce343bb3c3be5f06306132d9bc3d7250a4efc53cc7b30b56e9',
+		size: 21566
 	}
 };
 

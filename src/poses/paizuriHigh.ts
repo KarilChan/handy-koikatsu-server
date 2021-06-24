@@ -83,7 +83,8 @@ const paizuriHigh: IInfoPose = 	{
 	],
 	csv: {
 		name: 'pzh.csv',
-		sha256: '305f55dd18e1cdeb52fdc77071316682d887b0e7c5f48039707606b6fb28a433'
+		sha256: '305f55dd18e1cdeb52fdc77071316682d887b0e7c5f48039707606b6fb28a433',
+		size: 21951
 	}
 }
 

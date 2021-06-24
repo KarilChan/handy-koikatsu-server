@@ -1,8 +1,8 @@
-import NewPosePostModel from '../types/postModels/NewPosePostModel';
+import NewPoseRequest from '../types/requests/newPoseRequest';
 import {HState} from '../HState';
-import HandyApiV2 from '../HandyApi/HandyApiV2';
+import {HandyApi} from '../HandyApi/HandyApi';
 
-export const handleNewPose = (model: NewPosePostModel, hInfo: HState, handy: HandyApiV2): void => {
+export const handleNewPose = (model: NewPoseRequest, hInfo: HState, handy: HandyApi): void => {
 	console.log(`handleNewPose(): nameAnimation = ${model.nameAnimation}`);
 	const newPose = hInfo.changePose(model.nameAnimation);
 	if (newPose) {

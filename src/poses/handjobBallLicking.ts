@@ -66,7 +66,8 @@ const handjobBallLicking: IInfoPose = {
 	],
 	csv: {
 		name: 'hjbl.csv',
-		sha256: '1aea49bfd0daac966cb2e82ad87c8fc2170e6d9430c68dc83c8202aa29537767'
+		sha256: '1aea49bfd0daac966cb2e82ad87c8fc2170e6d9430c68dc83c8202aa29537767',
+		size: 21590
 	}
 }
 

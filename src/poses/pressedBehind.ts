@@ -3,7 +3,7 @@ import {IInfoPose} from '../csv/combinedPoses';
 
 const pressedBehind: IInfoPose = 	{
 	aliases: [
-		'Mating Press', '押し付けバック',
+		'Pressed From Behind', '押し付けバック',
 	],
 	states: [
 		{
@@ -39,28 +39,30 @@ const pressedBehind: IInfoPose = 	{
 			strokes: [
 				{
 					time: 0,
-					position: 5
+					position: 70
 				},
 				{
 					time: 0.5,
-					position: 70
+					position: 5
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 75
 				},
 				{
 					time: 0.5,
-					position: 75
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['OLoop'],
@@ -134,7 +136,8 @@ const pressedBehind: IInfoPose = 	{
 	],
 	csv: {
 		name: 'pb.csv',
-		sha256: '53f5f47a8b7b403a6a27747bc0b478bd3676dc232657ff81eaea229f7d47a497'
+		sha256: '3a7c0c5185024daf2b4bab0a19b521531e5e1c7b5bc007601afc45020769b45a',
+		size: 24921
 	}
 }
 

@@ -39,28 +39,30 @@ const standing: IInfoPose = {
 			strokes: [
 				{
 					time: 0,
-					position: 10
+					position: 50
 				},
 				{
 					time: 0.5,
-					position: 50
+					position: 10
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 10
+					position: 70
 				},
 				{
 					time: 0.475,
-					position: 70
+					position: 10
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['OLoop'],
@@ -134,7 +136,8 @@ const standing: IInfoPose = {
 	],
 	csv: {
 		name: 'st.csv',
-		sha256: '1c74cc2efc3e805c27f7e4d6322cd04cc1aa157e1320763ac4954385cefe2766'
+		sha256: '6871b884b5e00d0bd54788d83151bdcd86bc94a3a64997181b81ece8f7c164ba',
+		size: 26124
 	}
 }
 

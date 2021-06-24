@@ -39,39 +39,41 @@ const piledriver: IInfoPose = 	{
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 40
 				},
 				{
 					time: 0.5,
-					position: 40
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 60
 				},
 				{
 					time: 0.5,
-					position: 60
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['OLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 30
 				},
 				{
 					time: 0.5,
-					position: 30
+					position: 0
 				}
 			],
 			multiplier: 5,
@@ -120,7 +122,8 @@ const piledriver: IInfoPose = 	{
 	],
 	csv: {
 		name: 'pms.csv',
-		sha256: '2e63a0422787f7bc7807f5fc700a772b2e97bf4a6032ba92d286fb408d1ddf8b'
+		sha256: '48f8e6d397aeed4211b348ca4c9cfcc408931e872a455110893162fce1ba2eed',
+		size: 24762
 	}
 }
 

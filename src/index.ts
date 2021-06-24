@@ -1,20 +1,19 @@
 'use strict';
-import dotenv from 'dotenv';
+import {getEnvs} from './getEnvs';
 import Server from './Server';
 import {checkForUpdates} from './checkForUpdates';
+import {getHandyFw} from './getHandyFw';
+import {EHandyApiVer} from './types/EHandyApiVer';
 
 try {
-	if (
-		dotenv.config().error
-		|| !process.env.HANDY_KEY
-		|| !process.env.SERVER_PORT
-	) {
-		throw new Error('Failed to read .env config file');
-	}
-
-	checkForUpdates();
-	const server = new Server(process.env.HANDY_KEY);
-	server.start(Number(process.env.SERVER_PORT));
+	void (async () => {
+		await checkForUpdates();
+		const envs = await getEnvs();
+		const fwVer = await getHandyFw(envs.handyKey);
+		// API V2 requires FW3+
+		const server = new Server(envs.handyKey, parseFloat(fwVer) >= 3 ? EHandyApiVer.V2 : EHandyApiVer.V1);
+		server.start(envs.serverPort);
+	})();
 } catch (e) {
 	console.error(e);
 	console.log('Press any key to exit');

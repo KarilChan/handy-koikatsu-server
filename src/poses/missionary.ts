@@ -40,14 +40,15 @@ const missionary: IInfoPose = 	{
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 50
 				},
 				{
 					time: 0.465,
-					position: 50
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['SLoop'],
@@ -61,7 +62,8 @@ const missionary: IInfoPose = 	{
 					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['OLoop'],
@@ -121,7 +123,8 @@ const missionary: IInfoPose = 	{
 	],
 	csv: {
 		name: 'ms.csv',
-		sha256: '4d4366e4378cb40760c024f87faf8452c26d6fe280971cf6cc6676b0ee29c0e0'
+		sha256: '9c91a84d2edec11cf69cc3d103c177a1e9cfdbd2a87fc4bdd0b360ac1846dbd9',
+		size: 24770
 	}
 }
 

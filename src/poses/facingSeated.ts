@@ -46,7 +46,8 @@ const facingSeated: IInfoPose = {
 					position: 70
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['SLoop'],
@@ -60,18 +61,19 @@ const facingSeated: IInfoPose = {
 					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['OLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 25
+					position: 75
 				},
 				{
 					time: 0.5,
-					position: 75
+					position: 25
 				}
 			],
 			multiplier: 5,
@@ -120,7 +122,8 @@ const facingSeated: IInfoPose = {
 	],
 	csv: {
 		name: 'sf.csv',
-		sha256: '30900e47e53ba076b5fc9a4775d3b2df014027abc612ea0e1e906b4482608da0'
+		sha256: '30981f23fd28d68e6ef7cfb55e86e8eb5591dbfc5eaa96a367c5eac8467a23bf',
+		size: 25409
 	}
 }
 

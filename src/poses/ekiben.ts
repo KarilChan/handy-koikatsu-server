@@ -39,28 +39,30 @@ const ekiben: IInfoPose = {
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 60
 				},
 				{
 					time: 0.5,
-					position: 60
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 5
+					position: 65
 				},
 				{
 					time: 0.55,
-					position: 65
+					position: 5
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['OLoop'],
@@ -141,7 +143,8 @@ const ekiben: IInfoPose = {
 	],
 	csv: {
 		name: 'ek.csv',
-		sha256: 'ba234c32814d70b094ba364e1fe93436a048e798cc7b67f03bbb7211243e9a55'
+		sha256: '4989ec118eb4d9ecc26eb7fe9463176fb86a5849f1c743a07a9fbc2184ac634c',
+		size: 24888
 	}
 }
 

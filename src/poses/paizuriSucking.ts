@@ -98,7 +98,8 @@ const paizuri: IInfoPose = {
 	],
 	csv: {
 		name: 'pzs.csv',
-		sha256: 'fae4e5d36698137dd1bac4a1aec682beee34b277f6d4b8359283c9bdf190740f'
+		sha256: 'fae4e5d36698137dd1bac4a1aec682beee34b277f6d4b8359283c9bdf190740f',
+		size: 22336
 	}
 }
 

@@ -39,42 +39,45 @@ const doggyArmDesk: IInfoPose = {
 			strokes: [
 				{
 					time: 0,
-					position: 10
+					position: 60
 				},
 				{
 					time: 0.5,
-					position: 60
+					position: 10
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 65
 				},
 				{
 					time: 0.53,
-					position: 65
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['A_SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 20
+					position: 75
 				},
 				{
 					time: 0.45,
-					position: 75
+					position: 20
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['OLoop', 'A_OLoop'],
@@ -141,7 +144,8 @@ const doggyArmDesk: IInfoPose = {
 	],
 	csv: {
 		name: 'dogad.csv',
-		sha256: '0f66c06874e1a427a344868e8db2a0dd9dddcc738bb9050b4d605f661cf37fd4'
+		sha256: '85adeb3aac805cba2cd286952c65efeb20001dcfb2a0cf6b2deeb9a89fb9e4fe',
+		size: 38195
 	}
 }
 

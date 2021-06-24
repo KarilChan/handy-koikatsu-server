@@ -1,7 +1,7 @@
 import ELoopType from '../types/ELoopType';
 import {IInfoPose} from '../csv/combinedPoses';
 
-const noHandBlowjob: IInfoPose = 	{
+const noHandBlowjob: IInfoPose = {
 	aliases: [
 		'Standing No-Hand Blowjob', '立ちノーハンドフェラ'
 	],
@@ -76,7 +76,8 @@ const noHandBlowjob: IInfoPose = 	{
 	],
 	csv: {
 		name: 'nhb.csv',
-		sha256: 'c26d216b5b7fbdac771a30fcce2a849e430186e877cb662a9267e1d17bbba869'
+		sha256: 'c26d216b5b7fbdac771a30fcce2a849e430186e877cb662a9267e1d17bbba869',
+		size: 21168
 	}
 }
 

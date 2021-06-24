@@ -4,26 +4,25 @@ import {V2StatusResponse} from '../types/handyApiV2/V2StatusResponse';
 import {V2Mode} from '../types/handyApiV2/V2Mode';
 import {V2ModeRequest} from '../types/handyApiV2/V2ModeRequest';
 import {V2ModeUpdateResponse, V2ModeUpdateResult} from '../types/handyApiV2/V2ModeUpdateResponse';
-import {V2SyncRequest} from '../types/handyApiV2/V2SyncRequest';
 import {V2SyncResponse} from '../types/handyApiV2/V2SyncResponse';
 import {V2GenericResult} from '../types/handyApiV2/V2GenericResult';
 import {V2HSSPSetupResult} from '../types/handyApiV2/V2HSSPSetupResult';
 import {V2HSSPSetupResponse} from '../types/handyApiV2/V2HSSPSetupResponse';
 import {V2HsspPlayRequest} from '../types/handyApiV2/V2HsspPlayRequest';
 import {createAxiosInstance} from './createAxiosInstance';
+
+// Can't find a better way to get the current version
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import {version} from '../../package.json';
+import {HandyApi} from './HandyApi';
 
-export default class HandyApiV2 {
+export default class HandyApiV2 implements HandyApi {
 
 	private readonly ax: AxiosInstance;
 
 	public enabled = true; // user set
-	public ready = true; // self set
-
-	public strokeMin = 0;
-	public strokeMax = 100;
+	public ready = true;
 
 	/**
 	 * Where the pre-generated scripts are hosted
@@ -35,20 +34,22 @@ export default class HandyApiV2 {
 	private readonly debounceMs = 9 * 1000;
 
 	public constructor(connKey: string) {
-		this.ax = createAxiosInstance(connKey);
+		this.ax = createAxiosInstance(connKey, 'https://www.handyfeeling.com/api/handy/v2/');
 	}
 
-	public checkOnline(): Promise<void>  {
+	public checkOnline(): Promise<void> {
 		return new Promise((resolve, reject) => {
 			if (!this.enabled) {
 				return reject('not enabled');
 			}
 			this.ax.get<V2StatusResponse>('status')
 				.then(resp => {
+					/*
 					if (resp.data.mode !== V2Mode.HSSP) {
 						console.log('Device not in sync mode, switching to sync...');
 						void this.setSyncMode(V2Mode.HSSP);
 					}
+*/
 					return resolve();
 				})
 				.catch(err => {
@@ -79,17 +80,14 @@ export default class HandyApiV2 {
 		})
 	}
 
-	public async syncTime(request: V2SyncRequest = {syncCount: 6}): Promise<AxiosResponse<V2SyncResponse>> {
+	public async syncTime(): Promise<AxiosResponse<V2SyncResponse>> {
 		return this.ax.get('hssp/sync', {
-			params: request
+			params: {syncCount: 6}
 		});
 	}
 
 	public syncPrepare(csv: ICsv): Promise<V2HSSPSetupResult> {
 		return new Promise<V2HSSPSetupResult>((resolve, reject) => {
-			if (typeof csv.sha256 === 'undefined') {
-				return reject('missing sha256');
-			}
 			this.ready = false;
 			this.ax.put<V2HSSPSetupResponse>('hssp/setup', {
 				url: this.scriptBaseUrl + csv.name,
@@ -124,7 +122,7 @@ export default class HandyApiV2 {
 				tserver: new Date().valueOf(),
 				tstream: 0
 			}
-			this.ax.put<{result: V2GenericResult}>('hssp/play', req)
+			this.ax.put<{ result: V2GenericResult }>('hssp/play', req)
 				.then(resp => {
 					if (resp.data.result === V2GenericResult.SUCCESS) {
 						return resolve();
@@ -143,7 +141,7 @@ export default class HandyApiV2 {
 			if (!this.readyAndEnabled()) {
 				return reject('Not ready or enabled');
 			}
-			this.ax.put<{result: V2GenericResult}>('hssp/stop')
+			this.ax.put<{ result: V2GenericResult }>('hssp/stop')
 				.then(resp => {
 					if (resp.data.result === V2GenericResult.SUCCESS) {
 						return resolve();
@@ -170,7 +168,7 @@ export default class HandyApiV2 {
 				tserver: new Date().valueOf(),
 				tstream: Math.round(time)
 			};
-			this.ax.put<{result: V2GenericResult}>('hssp/play', req)
+			this.ax.put<{ result: V2GenericResult }>('hssp/play', req)
 				.then(resp => {
 					if (resp.data.result === V2GenericResult.SUCCESS) {
 						return resolve();

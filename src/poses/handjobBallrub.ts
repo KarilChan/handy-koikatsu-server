@@ -81,7 +81,8 @@ const handjobBallrub: IInfoPose = {
 	],
 	csv: {
 		name: 'hb.csv',
-		sha256: '57f04ea9b576a785adb7bdd4b1a663595a3ea1d6f247928513545478a0175278'
+		sha256: '57f04ea9b576a785adb7bdd4b1a663595a3ea1d6f247928513545478a0175278',
+		size: 22056
 	}
 }
 

@@ -80,7 +80,8 @@ const crowdedHandjob: IInfoPose = {
 	],
 	csv: {
 		name: 'ch.csv',
-		sha256: '92576532a97b6d76cdc1faa89f1c2ee11914b1f31b48981995ae525199d2042b'
+		sha256: '92576532a97b6d76cdc1faa89f1c2ee11914b1f31b48981995ae525199d2042b',
+		size: 32615
 	}
 }
 

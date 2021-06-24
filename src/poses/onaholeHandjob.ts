@@ -66,7 +66,8 @@ const onaholeHandjob: IInfoPose = {
 	],
 	csv: {
 		name: 'onaHj.csv',
-		sha256: 'ece40e502c89adc0b7d996781f5302df0b9f93edc877458a54fbd15f3fda763b'
+		sha256: 'ece40e502c89adc0b7d996781f5302df0b9f93edc877458a54fbd15f3fda763b',
+		size: 21601
 	}
 }
 

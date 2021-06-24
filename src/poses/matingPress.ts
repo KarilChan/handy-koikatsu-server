@@ -39,39 +39,41 @@ const matingPress: IInfoPose = 	{
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 50
 				},
 				{
 					time: 0.5,
-					position: 50
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 65
 				},
 				{
 					time: 0.5,
-					position: 65
+					position: 0
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['OLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 0
+					position: 50
 				},
 				{
 					time: 0.5,
-					position: 50
+					position: 0
 				}
 			],
 			multiplier: 5,
@@ -120,7 +122,8 @@ const matingPress: IInfoPose = 	{
 	],
 	csv: {
 		name: 'mp.csv',
-		sha256: '3c9cd6dc68f65c24eec86ced152757feacc7353a7310e7c6305bad9c1c6d8690'
+		sha256: '433ba8c60b86d6ef36abd180b5a003c53169f7f80de0dfcecea92be0604d347e',
+		size: 24734
 	}
 }
 

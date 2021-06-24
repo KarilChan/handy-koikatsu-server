@@ -1,11 +1,11 @@
-import LoopPostModel from '../types/postModels/LoopPostModel';
+import LoopRequest from '../types/requests/loopRequest';
 import {HState} from '../HState';
 import HandyCsv from '../csv/HandyCsv';
 import TSupportedAnims from '../types/TSupportedAnims';
 import TSupportedAnimStates from '../types/TSupportedAnimStates';
-import HandyApiV2 from '../HandyApi/HandyApiV2';
+import {HandyApi} from '../HandyApi/HandyApi';
 
-export const handleSpeedChg = (model: LoopPostModel, hInfo: HState, handy: HandyApiV2): void => {
+export const handleSpeedChg = (model: LoopRequest, hInfo: HState, handy: HandyApi): void => {
 	handy.syncAdjustTimeStamp(HandyCsv.calcStartTime(
 		model.stateInfo,
 		hInfo.getNameAnim() as TSupportedAnims,

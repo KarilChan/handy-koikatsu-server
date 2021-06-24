@@ -1,15 +1,15 @@
-import LoopPostModel from '../types/postModels/LoopPostModel';
+import LoopRequest from '../types/requests/loopRequest';
 import {HState} from '../HState';
 import HandyCsv from '../csv/HandyCsv';
 import TSupportedAnims from '../types/TSupportedAnims';
-import HandyApiV2 from '../HandyApi/HandyApiV2';
+import {HandyApi} from '../HandyApi/HandyApi';
 
-export const handleLoop = (model: LoopPostModel, hInfo: HState, handy: HandyApiV2): void => {
+export const handleLoop = (req: LoopRequest, hInfo: HState, handy: HandyApi): void => {
 	const nameAnim = hInfo.getNameAnim();
 	if (nameAnim === null) {
 		return;
 	}
-	const response = hInfo.handleAnimStateChange(model.animState, nameAnim);
+	const response = hInfo.handleAnimStateChange(req.animState, nameAnim);
 	// TODO fix this logic mess
 	if (!response.changed && response.newState !== null) {
 		// same animState, throttle
@@ -17,7 +17,7 @@ export const handleLoop = (model: LoopPostModel, hInfo: HState, handy: HandyApiV
 			return;
 		}
 		handy.syncAdjustTimeStamp(HandyCsv.calcStartTime(
-			model.stateInfo,
+			req.stateInfo,
 			hInfo.getNameAnim() as TSupportedAnims,
 			response.newState
 		))
@@ -35,7 +35,7 @@ export const handleLoop = (model: LoopPostModel, hInfo: HState, handy: HandyApiV
 	} else {
 		// state changed
 		handy.syncAdjustTimeStamp(HandyCsv.calcStartTime(
-			model.stateInfo,
+			req.stateInfo,
 			hInfo.getNameAnim() as TSupportedAnims,
 			response.newState
 		))

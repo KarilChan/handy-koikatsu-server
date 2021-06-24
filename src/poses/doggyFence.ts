@@ -39,28 +39,30 @@ const doggyFence: IInfoPose = {
 			strokes: [
 				{
 					time: 0,
-					position: 25
+					position: 65
 				},
 				{
 					time: 0.5,
-					position: 65
+					position: 25
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['SLoop'],
 			strokes: [
 				{
 					time: 0,
-					position: 5
+					position: 75
 				},
 				{
 					time: 0.5,
-					position: 75
+					position: 5
 				}
 			],
-			type: ELoopType.variable
+			type: ELoopType.variable,
+			maxMultiplier: 3
 		},
 		{
 			names: ['OLoop'],
@@ -127,7 +129,8 @@ const doggyFence: IInfoPose = {
 	],
 	csv: {
 		name: 'dogf.csv',
-		sha256: '33e869225e1b6e244616ce1a4c6cbc2732eec568b7d7f0c9d8287c21a1c77030'
+		sha256: '5ba6ae316c4f67352ea4b02dd46638d3754427629a0d1680d952eb8b1f8f1abc',
+		size: 25363
 	}
 }
 

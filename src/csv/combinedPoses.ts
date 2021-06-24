@@ -43,6 +43,9 @@ import facingWall from '../poses/facingWall';
 import layingDesk from '../poses/layingDesk';
 import matingPress from '../poses/matingPress';
 import pressedBehind from '../poses/pressedBehind';
+import spooning from '../poses/spooning';
+import spooningDesk from '../poses/spooningDesk';
+import spooningSeated from '../poses/spooningSeated';
 
 interface IStroke {
 	position: number,
@@ -51,14 +54,17 @@ interface IStroke {
 
 export interface ICsv {
 	name: string,
-	size?: number,
+	size: number,
 	sha256: string
 }
 
 export interface IState {
 	names: TSupportedAnimStates[],
 	strokes: IStroke[],
-	multiplier?: number, // extra speed multiplier for special states, default is 1
+	// extra speed multiplier for special states, default is 1
+	multiplier?: number,
+	// speed multiplier at max speed, default is 2.5
+	maxMultiplier?: number,
 	type: ELoopType
 }
 
@@ -111,7 +117,10 @@ const combinedPoses: IInfoPose[] = [
 	ekibenFence,
 	layingDesk,
 	matingPress,
-	pressedBehind
+	pressedBehind,
+	spooning,
+	spooningDesk,
+	spooningSeated
 ];
 
 export default combinedPoses;
