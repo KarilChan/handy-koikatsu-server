@@ -47,11 +47,10 @@ communicates with the Handy API to synchronize Handy strokes.
 
 ## Handy firmware compatability
 
-* FW2 (unsupported)
-    * Script seeking is slow, device will freeze from time to time to adjust.
+* FW2 (recommended)
+    * Script seeking is slow, Handy will have brief pauses during high speed poses.
 * FW3
-    * 3.0.0 works fine.
-    * 3.0.3 is bugged and can't play csv files over 40kb, therefore some doggystyle poses are unavailable.
+    * FW3.0.3+ Handy sometimes stops moving and requires a restart.
   
 ## How it works
 
