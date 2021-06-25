@@ -25,8 +25,8 @@ for (const pose of combinedPoses) {
 		switch (state.type) {
 			case ELoopType.variable: {
 				for (let i = 1; i <= CSV_RESOLUTION; i++) {
-					const multi = KK_SPEED_MIN + ((state.maxMultiplier || 2.5) - KK_SPEED_MIN) / (CSV_RESOLUTION - 1) * (i - 1);
-					const length = KK_LOOP_BASE_LENGTH / multi / (state.multiplier ?? 1);
+					const multi = KK_SPEED_MIN + ((state.maxMulti || 2.5) - KK_SPEED_MIN) / (CSV_RESOLUTION - 1) * (i - 1);
+					const length = KK_LOOP_BASE_LENGTH / multi / (state.baseSpeed ?? 1);
 					for (let time = (i - 1) * CSV_TIME_PER_LOOP; time < i * CSV_TIME_PER_LOOP - length; time += length) {
 						let lastTime = -1;
 						for (const stroke of state.strokes) {
@@ -44,7 +44,7 @@ for (const pose of combinedPoses) {
 				break;
 			}
 			case ELoopType.static: {
-				const length = KK_LOOP_BASE_LENGTH / (state.multiplier ?? 1);
+				const length = KK_LOOP_BASE_LENGTH / (state.baseSpeed ?? 1);
 				for (let time = 0; (time + length) < CSV_TIME_PER_LOOP; time += length) {
 					for (const stroke of state.strokes) {
 						strokes.push({
@@ -57,7 +57,7 @@ for (const pose of combinedPoses) {
 			}
 			case ELoopType.single: {
 				for (const stroke of state.strokes) {
-					const length = KK_LOOP_BASE_LENGTH / (state.multiplier ?? 1);
+					const length = KK_LOOP_BASE_LENGTH / (state.baseSpeed ?? 1);
 					strokes.push({
 						time: Math.round(baseTime + length * stroke.time),
 						position: stroke.position

@@ -64,6 +64,32 @@ const SUPPORTED_ANIMS = [
 	'Mating Press',
 	'Pressed From Behind',
 
+	// Onanie
+	'Masturbating While Standing', 'Standing masturbation', '立ちオナニ',
+	'Masturbating In Chair', 'Chair masturbation', '椅子オナニー',
+	'Masturbating Against Corner', 'Corner masturbation', '角オナニー',
+
+	// Yuri
+	'Tribbing', '具合わせ',
+	'Mutual Groping', '互い弄り',
+	'Chair Cunnilingus', '椅子クンニ',
+
+	// FFM
+	'Wフェラ', 'Fellatio',
+	'Wフェラ入れ替え', 'Fellatio Switch',
+	'後背位手マン', '3P Doggystyle',
+	'後背位手マン入れ替え', '3P Doggystyle Switch',
+	'騎乗位クンニ', '3P Cowgirl',
+	'騎乗位クンニ入れ替え', '3P Cowgirl Switch',
+
+	// Darkness
+	'Chest Massaged Handjob', '胸揉まれ手コキ',
+	'Irrumatio', 'イラマチオ',
+	'Fellatio & Handjob', 'フェラ＆手コキ',
+	'Pinned Missionary', '押さえ正常位',
+	'Pinned Spooning', '押さえ側位',
+	'Doggy & Fellatio', 'バック＆フェラ',
+
 	'亀頭いじり',
 	'片手コキ',
 	'両手コキ',

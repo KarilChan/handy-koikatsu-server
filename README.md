@@ -15,18 +15,25 @@ communicates with the Handy API to synchronize Handy strokes.
 * [Roadmap](#roadmap)
 
 ## Changelog
+
+### 1.0.4-alpha - 2021-06-26
+
+* Added all poses in other modes (onanie, yuri, ffm, darkness).
+* You can get the latest build [here](https://github.com/KarilChan/handy-koikatsu-server/releases).
+
 ### 1.0.3-alpha - 2021-06-25
+
 * Added support to FW2 devices. Turns out FW2 works better than FW3 at the moment.
-  * Using API v1 for FW2 devices.
+    * Using API v1 for FW2 devices.
 * Works without .env file.
 * Added 3 missing poses (spooning).
 * Penetration poses are now accurate and actually usable.
-* You can get the latest build [here](https://github.com/KarilChan/handy-koikatsu-server/releases).
 
 ## Installation
 
 * Install [KK Handy plugin](https://github.com/KarilChan/KKHandyPlugin)
-* Download the [latest precompiled release](https://github.com/KarilChan/handy-koikatsu-server/releases) for this project
+* Download the [latest precompiled release](https://github.com/KarilChan/handy-koikatsu-server/releases) for this
+  project
     * Alternatively, if you have Node you may compile this yourself
       ```shell
       git clone https://github.com/KarilChan/handy-koikatsu-server.git
@@ -34,7 +41,7 @@ communicates with the Handy API to synchronize Handy strokes.
       npm run build
       node dist/index.js # Start the server
       ```
-* Edit the `.env.example` config file and rename it to `.env`
+* (optional) Edit the `.env.example` config file and rename it to `.env`
 * Run `kk-handy-server.exe` before starting H scenes
 
 ### Config file (.env)
@@ -51,10 +58,10 @@ communicates with the Handy API to synchronize Handy strokes.
     * Script seeking is slow, Handy will have brief pauses during high speed poses.
 * FW3
     * FW3.0.3+ Handy sometimes stops moving and requires a restart.
-  
+
 ## How it works
 
-A csv file is generated for each pose (or similar poses)
+Csv scripts with segments of different speeds
 
 ## Why do I need this besides the Koikatsu plugin?
 
@@ -69,14 +76,15 @@ A csv file is generated for each pose (or similar poses)
 * Strokes are out of sync!
     * Handy has a minimum stroking speed, if the H pose is slower than that it will cause de-sync. Try increasing the H
       speed in-game or stroke zone on the Handy.
+    * Alternative animation of `Fella & HJ` in Darkness mode gets out of sync if you increase the speed.
+    * Random (girl lead) mode does not sync well. This includes some yuri poses that have forced random speed.
     * There could be other bugs causing this, if it's reproducible please open an issue.
 
 ## Roadmap
 
-- [x] Finish scripting all poses in main H mode
+- [x] Finish scripting all H poses
     - [x] Service
     - [ ] Caress
     - [x] Penetration
-- [ ] Finish scripting all poses in Darkness mode
 - [ ] Support other Illusion games
 - [ ] Support random speed (might not be possible)

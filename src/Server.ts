@@ -87,7 +87,6 @@ export default class Server {
 		})
 
 		this.app.post('/loop', (req: Request<unknown, unknown, LoopRequest>, res) => {
-			// console.log(req.body.speed);
 			handleLoop(req.body, this.hInfo, this.handy);
 			if (this._currentState !== req.body.animState) {
 				this._currentState = req.body.animState;

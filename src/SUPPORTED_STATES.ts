@@ -1,4 +1,5 @@
 const SUPPORTED_STATES = [
+	// General
 	'Idle',
 	'A_Idle',
 	'WLoop',
@@ -23,7 +24,7 @@ const SUPPORTED_STATES = [
 	'Vomit_IN',
 	'Vomit',
 	'Vomit_A',
-
+	// Penetration
 	'Insert',
 	'InsertIdle',
 	'A_Insert',
@@ -48,6 +49,11 @@ const SUPPORTED_STATES = [
 	'Drop',
 	'A_Pull',
 	'A_Drop',
+	// Onanie
+	'MLoop',
+	'Orgasm',
+	'Orgasm_A',
+	'Orgasm_B',
 ] as const;
 
 export default SUPPORTED_STATES;
