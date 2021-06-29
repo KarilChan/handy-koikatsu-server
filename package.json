@@ -1,6 +1,6 @@
 {
   "name": "handy-kk-server",
-  "version": "1.0.4-alpha",
+  "version": "1.0.5-alpha",
   "description": "Listens for requests from koikatsu-handy-plugin and calls the Handy API to control the device.",
   "keywords": [
     "thehandy",

@@ -1,14 +1,13 @@
-import {ICsv} from '../csv/combinedPoses';
+import {ICsv} from '../csv/scriptedPoses';
 import {AxiosInstance, AxiosResponse} from 'axios';
-import {V2StatusResponse} from '../types/handyApiV2/V2StatusResponse';
-import {V2Mode} from '../types/handyApiV2/V2Mode';
-import {V2ModeRequest} from '../types/handyApiV2/V2ModeRequest';
-import {V2ModeUpdateResponse, V2ModeUpdateResult} from '../types/handyApiV2/V2ModeUpdateResponse';
-import {V2SyncResponse} from '../types/handyApiV2/V2SyncResponse';
-import {V2GenericResult} from '../types/handyApiV2/V2GenericResult';
-import {V2HSSPSetupResult} from '../types/handyApiV2/V2HSSPSetupResult';
-import {V2HSSPSetupResponse} from '../types/handyApiV2/V2HSSPSetupResponse';
-import {V2HsspPlayRequest} from '../types/handyApiV2/V2HsspPlayRequest';
+import {V2StatusResponse} from '../types/handyApi/V2StatusResponse';
+import {V2ModeRequest} from '../types/handyApi/V2ModeRequest';
+import {V2ModeUpdateResponse, V2ModeUpdateResult} from '../types/handyApi/V2ModeUpdateResponse';
+import {V2SyncResponse} from '../types/handyApi/V2SyncResponse';
+import {V2GenericResult} from '../types/handyApi/V2GenericResult';
+import {V2HSSPSetupResult} from '../types/handyApi/V2HSSPSetupResult';
+import {V2HSSPSetupResponse} from '../types/handyApi/V2HSSPSetupResponse';
+import {V2HsspPlayRequest} from '../types/handyApi/V2HsspPlayRequest';
 import {createAxiosInstance} from './createAxiosInstance';
 
 // Can't find a better way to get the current version
@@ -16,8 +15,12 @@ import {createAxiosInstance} from './createAxiosInstance';
 // @ts-ignore
 import {version} from '../../package.json';
 import {HandyApi} from './HandyApi';
+import {EHandySyncMode} from '../types/handyApi/EHandySyncMode';
+import {V2Mode} from '../types/handyApi/V2Mode';
 
 export default class HandyApiV2 implements HandyApi {
+
+	private mode: EHandySyncMode = EHandySyncMode.scripted;
 
 	private readonly ax: AxiosInstance;
 
@@ -31,7 +34,8 @@ export default class HandyApiV2 implements HandyApi {
 	private readonly scriptBaseUrl = `https://www.karil.rs/handykk/${version}/`;
 
 	private lastAdjust = Date.now();
-	private readonly debounceMs = 9 * 1000;
+	private readonly scriptThrottle = 9 * 1000; // 9s between re-syncs
+	private readonly autoThrottle = 1000;
 
 	public constructor(connKey: string) {
 		this.ax = createAxiosInstance(connKey, 'https://www.handyfeeling.com/api/handy/v2/');
@@ -43,13 +47,7 @@ export default class HandyApiV2 implements HandyApi {
 				return reject('not enabled');
 			}
 			this.ax.get<V2StatusResponse>('status')
-				.then(resp => {
-					/*
-					if (resp.data.mode !== V2Mode.HSSP) {
-						console.log('Device not in sync mode, switching to sync...');
-						void this.setSyncMode(V2Mode.HSSP);
-					}
-*/
+				.then(() => {
 					return resolve();
 				})
 				.catch(err => {
@@ -58,17 +56,37 @@ export default class HandyApiV2 implements HandyApi {
 		})
 	}
 
-	public setSyncMode(mode: V2Mode): Promise<V2ModeUpdateResponse> {
-		return new Promise<V2ModeUpdateResponse>((resolve, reject) => {
+	public getMode(): EHandySyncMode {
+		return this.mode;
+	}
+
+	public setMode(mode: EHandySyncMode): Promise<V2ModeUpdateResponse | void> {
+		return new Promise((resolve, reject) => {
+			if (mode === this.mode) {
+				return resolve();
+			}
 			this.ready = false;
-			const req: V2ModeRequest = {mode};
+			const req: V2ModeRequest = {
+				mode: mode === EHandySyncMode.scripted ? V2Mode.HSSP : V2Mode.HAMP
+			};
 			this.ax.put<V2ModeUpdateResponse>('mode', req)
 				.then(resp => {
 					if (resp.data.result === V2ModeUpdateResult.ERROR) {
-						console.warn('Set sync mode failed');
 						return reject();
 					} else {
-						return resolve(resp.data);
+						this.mode = mode;
+						if (mode === EHandySyncMode.auto) {
+							// need this to start moving in auto mode
+							this.ax.put<{ result: V2GenericResult }>('hamp/start')
+								.then(() => {
+									return resolve(resp.data);
+								})
+								.catch(err => {
+									reject(err);
+								})
+						} else {
+							return resolve(resp.data);
+						}
 					}
 				})
 				.catch(err => {
@@ -136,12 +154,14 @@ export default class HandyApiV2 implements HandyApi {
 		})
 	}
 
-	public syncPause(): Promise<void> {
+	public pause(): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
 			if (!this.readyAndEnabled()) {
 				return reject('Not ready or enabled');
 			}
-			this.ax.put<{ result: V2GenericResult }>('hssp/stop')
+			this.ax.put<{ result: V2GenericResult }>(
+				this.mode === EHandySyncMode.scripted ? 'hssp/stop' : 'hamp/stop'
+			)
 				.then(resp => {
 					if (resp.data.result === V2GenericResult.SUCCESS) {
 						return resolve();
@@ -192,14 +212,34 @@ export default class HandyApiV2 implements HandyApi {
 		return true;
 	}
 
-	throttleTime(): boolean {
+	throttleRequests(): boolean {
 		const now = Date.now();
-		if ((now - this.lastAdjust) > this.debounceMs) {
+		const throttle = this.mode === EHandySyncMode.scripted ? this.scriptThrottle : this.autoThrottle;
+		if ((now - this.lastAdjust) > throttle) {
 			this.lastAdjust = now;
 			return false;
 		} else {
 			return true;
 		}
+	}
+
+	public setSpeed(speed: number): Promise<void> {
+		return new Promise((resolve, reject) => {
+			if (speed > 100 || speed < 0) {
+				return reject(`Invalid speed: ${speed}`);
+			}
+			this.ax.put<{ result: V2GenericResult }>('hamp/velocity', {
+				velocity: Math.round(speed),
+			})
+				.then(resp => {
+					if (resp.data.result === V2GenericResult.SUCCESS) {
+						return resolve();
+					} else {
+						return reject(resp.data);
+					}
+				})
+				.catch(err => reject(err));
+		})
 	}
 
 }

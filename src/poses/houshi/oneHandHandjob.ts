@@ -1,5 +1,5 @@
 import ELoopType from '../../types/ELoopType';
-import {IInfoPose} from '../../csv/combinedPoses';
+import {IInfoPose} from '../../csv/scriptedPoses';
 
 const oneHandHandjob: IInfoPose = 	{
 	aliases: [
@@ -13,7 +13,7 @@ const oneHandHandjob: IInfoPose = 	{
 			strokes: [
 				{
 					time: 0,
-					position: 20
+					position: 10
 				},
 				{
 					time: 0.5,
@@ -31,7 +31,7 @@ const oneHandHandjob: IInfoPose = 	{
 				},
 				{
 					time: 0.61909,
-					position: 20
+					position: 10
 				}
 			],
 			type: ELoopType.variable

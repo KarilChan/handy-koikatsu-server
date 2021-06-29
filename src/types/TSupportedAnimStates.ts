@@ -1,4 +1,4 @@
-import SUPPORTED_STATES from '../SUPPORTED_STATES';
+import SUPPORTED_STATES from '../koikatsu/SUPPORTED_STATES';
 
 type TSupportedAnimStates = typeof SUPPORTED_STATES[number];
 

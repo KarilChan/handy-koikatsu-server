@@ -9,7 +9,7 @@ export const createAxiosInstance = (connKey: string, baseURL: string): AxiosInst
 		httpsAgent: new https.Agent({keepAlive: true})
 	});
 	ax.interceptors.request.use(config => {
-		console.log(`${config.url ?? ''} ${JSON.stringify(config.params) ?? ''} ${JSON.stringify(config.data) ?? ''}`);
+		console.log(`[${config.method ?? ''}] ${config.url ?? ''} ${JSON.stringify(config.params) ?? ''} ${JSON.stringify(config.data) ?? ''}`);
 		return config;
 	})
 	/*

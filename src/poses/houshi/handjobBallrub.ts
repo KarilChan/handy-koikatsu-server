@@ -1,4 +1,4 @@
-import {IInfoPose} from '../../csv/combinedPoses';
+import {IInfoPose} from '../../csv/scriptedPoses';
 import ELoopType from '../../types/ELoopType';
 
 const handjobBallrub: IInfoPose = {

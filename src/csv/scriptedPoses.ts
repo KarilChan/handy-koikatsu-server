@@ -97,7 +97,7 @@ export interface IInfoPose {
 	csv: ICsv
 }
 
-const combinedPoses: IInfoPose[] = [
+const scriptedPoses: IInfoPose[] = [
 	glansRubbing,
 	oneHandHandjob,
 	twoHandHandjob,
@@ -164,4 +164,4 @@ const combinedPoses: IInfoPose[] = [
 	pinnedSpooning,
 ];
 
-export default combinedPoses;
+export default scriptedPoses;

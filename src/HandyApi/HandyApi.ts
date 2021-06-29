@@ -1,11 +1,24 @@
-import {ICsv} from '../csv/combinedPoses';
+import {ICsv} from '../csv/scriptedPoses';
+import {EHandySyncMode} from '../types/handyApi/EHandySyncMode';
 
 export interface HandyApi {
+	getMode(): EHandySyncMode,
+
+	setMode(newMode: EHandySyncMode): Promise<unknown>,
+
 	checkOnline(): Promise<void>,
+
 	syncTime(): Promise<unknown>,
+
 	syncPrepare(csv: ICsv): Promise<unknown>,
+
 	syncPlay(): Promise<unknown>,
-	syncPause(): Promise<unknown>,
+
+	pause(): Promise<unknown>,
+
 	syncAdjustTimeStamp(time: number): Promise<unknown>,
-	throttleTime(): boolean,
+
+	throttleRequests(): boolean,
+
+	setSpeed(speed: number): Promise<unknown>,
 }

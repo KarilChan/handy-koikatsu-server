@@ -1,5 +1,5 @@
 import LoopRequest from '../types/requests/loopRequest';
-import {HState} from '../HState';
+import {HState} from '../koikatsu/HState';
 import HandyCsv from '../csv/HandyCsv';
 import TSupportedAnims from '../types/TSupportedAnims';
 import TSupportedAnimStates from '../types/TSupportedAnimStates';

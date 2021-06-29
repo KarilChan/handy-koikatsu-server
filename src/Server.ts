@@ -2,7 +2,7 @@ import express, {Request} from 'express';
 import bodyParser from 'body-parser';
 import NewPoseRequest from './types/requests/newPoseRequest';
 import LoopRequest from './types/requests/loopRequest';
-import {HState} from './HState';
+import {HState} from './koikatsu/HState';
 import {handleNewPose} from './controllers/newPoseController';
 import {handleLoop} from './controllers/loopController';
 import {handleStop} from './controllers/stopController';
@@ -90,7 +90,7 @@ export default class Server {
 			handleLoop(req.body, this.hInfo, this.handy);
 			if (this._currentState !== req.body.animState) {
 				this._currentState = req.body.animState;
-				console.log(`New ${req.body.animState}`);
+				console.log(`New state: ${req.body.animState}`);
 			}
 			res.send();
 		})
@@ -102,7 +102,7 @@ export default class Server {
 		})
 
 		this.app.get('/stop', (req, res) => {
-			handleStop(this.handy);
+			void handleStop(this.handy);
 			res.send();
 		})
 

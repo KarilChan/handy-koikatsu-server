@@ -54,6 +54,20 @@ const SUPPORTED_STATES = [
 	'Orgasm',
 	'Orgasm_A',
 	'Orgasm_B',
+	// Caress
+	'M_Touch',
+	'M_Idle',
+	'Orgasm_Start',
+	'Orgasm_Loop',
+	'A_Touch',
+	'K_Touch',
+	'K_Idle',
+	'K_Loop',
+	'S_Touch',
+	'S_Idle',
+	'Front_Dislikes',
+	'Back_Dislikes',
+
 ] as const;
 
 export default SUPPORTED_STATES;

@@ -1,11 +1,13 @@
-import TSupportedAnims from './types/TSupportedAnims';
-import TSupportedAnimStates from './types/TSupportedAnimStates';
-import combinedPoses, {IInfoPose} from './csv/combinedPoses';
+import TSupportedAnims from '../types/TSupportedAnims';
+import TSupportedAnimStates from '../types/TSupportedAnimStates';
 import SUPPORTED_STATES from './SUPPORTED_STATES';
-import SUPPORTED_ANIMS from './SUPPORTED_ANIMS';
-import HandyCsv from './csv/HandyCsv';
+import SCRIPTED_ANIMS from './SCRIPTED_ANIMS';
+import HandyCsv from '../csv/HandyCsv';
+import {isAutoOrScript} from '../controllers/newPoseController';
+import AUTO_ANIMS from './AUTO_ANIMS';
+import {HandyAuto} from '../csv/HandyAuto';
 
-interface IAnimStateChangeResponse {
+interface IAnimStateChangeRes {
 	newState: HState['animState'],
 	changed: boolean,
 	started: boolean // start playing from pause
@@ -27,10 +29,17 @@ export class HState {
 		return !!SUPPORTED_STATES.find(s => s === state);
 	}
 
-	public handleAnimStateChange(state: string, nameAnim: TSupportedAnims): IAnimStateChangeResponse {
+	public handleAnimStateChange(state: string, nameAnim: TSupportedAnims): IAnimStateChangeRes {
 		const oldState = this.animState;
 		const newState = HState.isSupportedState(state) ? state : null;
 		this.animState = newState;
+		if (AUTO_ANIMS.find(a => a === nameAnim)) {
+			return {
+				changed: !HandyAuto.isSameAnimStates(newState, oldState),
+				newState,
+				started: false // always moving in auto mode
+			};
+		}
 		if (HandyCsv.isSameAnimStates(nameAnim, newState, oldState)) {
 			return {
 				changed: false,
@@ -49,11 +58,11 @@ export class HState {
 	/**
 	 * Returns null if animation not supported
 	 */
-	public changePose(newAnimation: string): IInfoPose | null {
-		if (HState.isSupportedAnim(newAnimation)) {
-			console.log(`${newAnimation} isSupportedAnime`);
-			this.nameAnimation = newAnimation;
-			return combinedPoses.find(pose => pose.aliases.includes(newAnimation)) as IInfoPose;
+	public changePose(newAnimation: string): TSupportedAnims | null {
+		if (isAutoOrScript(newAnimation) !== null) {
+			console.log(`${newAnimation} is supported pose`);
+			this.nameAnimation = newAnimation as TSupportedAnims;
+			return newAnimation as TSupportedAnims;
 		} else {
 			this.nameAnimation = null;
 			return null;
@@ -61,6 +70,6 @@ export class HState {
 	}
 
 	private static isSupportedAnim(animation: string): animation is TSupportedAnims {
-		return !!SUPPORTED_ANIMS.find(s => s === animation);
+		return !!SCRIPTED_ANIMS.find(s => s === animation);
 	}
 }

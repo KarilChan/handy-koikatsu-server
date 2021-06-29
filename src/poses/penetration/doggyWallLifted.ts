@@ -1,5 +1,5 @@
 import ELoopType from '../../types/ELoopType';
-import {IInfoPose} from '../../csv/combinedPoses';
+import {IInfoPose} from '../../csv/scriptedPoses';
 
 const doggyWallLifted: IInfoPose = {
 	aliases: [

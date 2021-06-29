@@ -1,7 +1,7 @@
 import IUnityAnimStateInfo from '../types/unity/IUnityAnimStateInfo';
 import TSupportedAnims from '../types/TSupportedAnims';
 import TSupportedAnimStates from '../types/TSupportedAnimStates';
-import combinedPoses, {IInfoPose, IState} from './combinedPoses';
+import scriptedPoses, {IInfoPose, IState} from './scriptedPoses';
 import ELoopType from '../types/ELoopType';
 
 /**
@@ -39,7 +39,7 @@ export default class HandyCsv {
 		nameAnim: TSupportedAnims,
 		animStateName: TSupportedAnimStates
 	): number {
-		const anim = combinedPoses.find(pose => pose.aliases.includes(nameAnim));
+		const anim = scriptedPoses.find(pose => pose.aliases.includes(nameAnim));
 		if (typeof anim === 'undefined') {
 			return -1;
 		}
@@ -50,7 +50,7 @@ export default class HandyCsv {
 		}
 		const stateOffset = this.getStateStartTimeByPose(anim, animStateName);
 		const intervalOffset = animState.type === ELoopType.variable
-			? this.calcClosestInterval(unityAnimState.speedMultiplier, animState.maxMulti || 2.5) * CSV_TIME_PER_LOOP
+			? this.calcClosestInterval(unityAnimState.speedMultiplier, animState.maxMulti || KK_SPEED_MAX) * CSV_TIME_PER_LOOP
 			: 0;
 		const strokeOffset = KK_LOOP_BASE_LENGTH * (unityAnimState.normalizedTime % 1)
 		return stateOffset + intervalOffset + strokeOffset;
@@ -81,14 +81,6 @@ export default class HandyCsv {
 		return startTime;
 	}
 
-	private static getPoseByName(nameAnim: TSupportedAnims): IInfoPose {
-		const pose = combinedPoses.find(infoPose => infoPose.aliases.includes(nameAnim));
-		if (typeof pose === 'undefined') {
-			throw new Error('This should never happen');
-		}
-		return pose;
-	}
-
 	public static getStateLength(state: IState): number {
 		switch (state.type) {
 			case ELoopType.variable:
@@ -112,7 +104,7 @@ export default class HandyCsv {
 			return false;
 		}
 		// check if different state names but same state
-		const pose = combinedPoses.find(p => p.aliases.includes(nameAnim));
+		const pose = scriptedPoses.find(p => p.aliases.includes(nameAnim));
 		if (typeof pose === 'undefined') {
 			throw new Error(`This should never happen ${nameAnim}`);
 		}

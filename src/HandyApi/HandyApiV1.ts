@@ -2,18 +2,22 @@ import {
 	CommandResponse,
 	HandyMode,
 	ModeResponse,
+	SetSpeedResponse,
 	SettingsResponse,
 	SyncPlayResponse,
 	SyncPrepareResponse
 } from 'thehandy/lib/types';
 import IGetServerTimeResponse from '../types/IGetServerTimeResponse';
-import {ICsv} from '../csv/combinedPoses';
+import {ICsv} from '../csv/scriptedPoses';
 import {createAxiosInstance} from './createAxiosInstance';
 import {version} from '../../package.json';
 import {AxiosInstance} from 'axios';
 import {HandyApi} from './HandyApi';
+import {EHandySyncMode} from '../types/handyApi/EHandySyncMode';
 
 export default class HandyApiV1 implements HandyApi {
+
+	private mode: EHandySyncMode = EHandySyncMode.scripted;
 
 	private readonly ax: AxiosInstance;
 
@@ -27,44 +31,33 @@ export default class HandyApiV1 implements HandyApi {
 	 * You can run generateCsv.ts to create your own scripts
 	 */
 	private readonly scriptBaseUrl = `https://www.karil.rs/handykk/${version}/`;
+	private readonly autoThrottle = 1000;
 
 	private lastAdjust = Date.now();
-	private readonly debounceMs = 9 * 1000;
+	private readonly scriptThrottle = 9 * 1000; // 9s between re-syncs
 
 	public constructor(connKey: string) {
 		this.ax = createAxiosInstance(connKey, `https://www.handyfeeling.com/api/v1/${connKey}/`);
 	}
 
-	public checkOnline(): Promise<void> {
-		return new Promise((resolve, reject) => {
-			if (!this.enabled) {
-				return resolve();
-			}
-			this.ax.get<SettingsResponse>('getSettings')
-				.then(response => {
-					if (!response.data.connected) {
-						console.warn('Device not connected');
-					} else if (response.data.mode !== HandyMode.sync) {
-						console.log('Device not in sync mode, switching to sync...');
-						this.setSyncMode(true)
-							.catch(err => reject(err));
-					}
-					return resolve();
-				})
-				.catch(err => reject(err))
-		})
+	public getMode(): EHandySyncMode {
+		return this.mode;
 	}
 
-	public setSyncMode(enabled = this.enabled): Promise<ModeResponse> {
-		return new Promise<ModeResponse>((resolve, reject) => {
+	public setMode(newMode: EHandySyncMode): Promise<ModeResponse | void> {
+		return new Promise((resolve, reject) => {
+			if (newMode === this.mode) {
+				return resolve();
+			}
 			this.ready = false;
 			this.ax.get<ModeResponse>('setMode', {
 				params: {
-					mode: enabled ? HandyMode.sync : HandyMode.off
+					mode: newMode === EHandySyncMode.auto ? HandyMode.automatic : HandyMode.sync
 				}
 			})
 				.then(response => {
 					if (response.data.success) {
+						this.mode = newMode
 						return resolve(response.data);
 					} else {
 						return reject();
@@ -78,6 +71,23 @@ export default class HandyApiV1 implements HandyApi {
 				});
 		})
 	}
+
+	public checkOnline(): Promise<void> {
+		return new Promise((resolve, reject) => {
+			if (!this.enabled) {
+				return resolve();
+			}
+			this.ax.get<SettingsResponse>('getSettings')
+				.then(response => {
+					if (!response.data.connected) {
+						console.warn('Device not connected');
+					}
+					return resolve();
+				})
+				.catch(err => reject(err))
+		})
+	}
+
 
 	public getServerTime(): Promise<number> {
 		return new Promise(resolve => {
@@ -168,21 +178,51 @@ export default class HandyApiV1 implements HandyApi {
 		})
 	}
 
-	public syncPause(): Promise<SyncPlayResponse> {
+	public pause(): Promise<SyncPlayResponse | void> {
 		return new Promise((resolve, reject) => {
 			if (!this.readyAndEnabled()) {
 				return reject('Not ready or enabled');
 			}
-			this.ax.get<SyncPlayResponse>('syncPlay', {
+			if (this.mode === EHandySyncMode.scripted) {
+				this.ax.get<SyncPlayResponse>('syncPlay', {
+					params: {
+						play: false
+					}
+				})
+					.then(response => {
+						if (response.data.success) {
+							return resolve(response.data);
+						} else {
+							return reject(response.data.error);
+						}
+					})
+					.catch(err => reject(err));
+			} else {
+				this.setSpeed(0)
+					.then(() => {
+						return resolve();
+					})
+					.catch(err => reject(err));
+			}
+		})
+	}
+
+	public setSpeed(speed: number): Promise<void> {
+		return new Promise((resolve, reject) => {
+			if (speed > 100 || speed < 0) {
+				return reject(`Invalid speed: ${speed}`);
+			}
+			this.ax.get<SetSpeedResponse>('setSpeed', {
 				params: {
-					play: false
+					speed: Math.round(speed),
+					type: '%'
 				}
 			})
-				.then(response => {
-					if (response.data.success) {
-						return resolve(response.data);
+				.then(resp => {
+					if (resp.data.error) {
+						return reject(resp.data.error);
 					} else {
-						return reject(response.data.error);
+						return resolve();
 					}
 				})
 				.catch(err => reject(err));
@@ -217,6 +257,30 @@ export default class HandyApiV1 implements HandyApi {
 		})
 	}
 
+	/*
+		public startAuto(): Promise<unknown> {
+			return new Promise(resolve => {
+				this.ax.get<CommandResponse>('syncPlay', {
+					params: {
+						play: true,
+						timeout: 30000,
+						serverTime: Math.round(Date.now() + this.serverTimeOffset),
+						time: Math.round(time),
+					}
+				})
+					.then(response => {
+						if (response.data.success) {
+							return resolve(response.data);
+						} else {
+							return reject(response.data.error);
+						}
+					})
+					.catch(err => reject(err));
+
+			})
+		}
+	*/
+
 	private readyAndEnabled(): boolean {
 		if (!this.ready) {
 			return false;
@@ -227,9 +291,10 @@ export default class HandyApiV1 implements HandyApi {
 		return true;
 	}
 
-	throttleTime(): boolean {
+	throttleRequests(): boolean {
 		const now = Date.now();
-		if ((now - this.lastAdjust) > this.debounceMs) {
+		const throttle = this.mode === EHandySyncMode.scripted ? this.scriptThrottle : this.autoThrottle;
+		if ((now - this.lastAdjust) > throttle) {
 			this.lastAdjust = now;
 			return false;
 		} else {

@@ -3,18 +3,18 @@ import fs from 'fs';
 import HandyCsv, {
 	CSV_RESOLUTION,
 	CSV_TIME_PER_LOOP,
-	KK_LOOP_BASE_LENGTH,
+	KK_LOOP_BASE_LENGTH, KK_SPEED_MAX,
 	KK_SPEED_MIN
 } from './csv/HandyCsv';
 import ELoopType from './types/ELoopType';
-import combinedPoses from './csv/combinedPoses';
+import scriptedPoses from './csv/scriptedPoses';
 
 interface ICsvStroke {
 	time: number,
 	position: number
 }
 
-for (const pose of combinedPoses) {
+for (const pose of scriptedPoses) {
 	const strokes: ICsvStroke[] = [];
 	const states = pose.states;
 	// Handy ignores the first line of csv, use it to store metadata
@@ -25,7 +25,7 @@ for (const pose of combinedPoses) {
 		switch (state.type) {
 			case ELoopType.variable: {
 				for (let i = 1; i <= CSV_RESOLUTION; i++) {
-					const multi = KK_SPEED_MIN + ((state.maxMulti || 2.5) - KK_SPEED_MIN) / (CSV_RESOLUTION - 1) * (i - 1);
+					const multi = KK_SPEED_MIN + ((state.maxMulti || KK_SPEED_MAX) - KK_SPEED_MIN) / (CSV_RESOLUTION - 1) * (i - 1);
 					const length = KK_LOOP_BASE_LENGTH / multi / (state.baseSpeed ?? 1);
 					for (let time = (i - 1) * CSV_TIME_PER_LOOP; time < i * CSV_TIME_PER_LOOP - length; time += length) {
 						let lastTime = -1;

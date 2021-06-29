@@ -1,4 +1,5 @@
-const SUPPORTED_ANIMS = [
+// using csv scripts
+const SCRIPTED_ANIMS = [
 	'One-Hand Handjob',
 	'Standing One-Hand Handjob',
 	'Seated One-Hand Handjob',
@@ -156,4 +157,4 @@ const SUPPORTED_ANIMS = [
 
 ] as const;
 
-export default SUPPORTED_ANIMS;
+export default SCRIPTED_ANIMS;
