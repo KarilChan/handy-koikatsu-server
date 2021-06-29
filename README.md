@@ -16,10 +16,16 @@ communicates with the Handy API to synchronize Handy strokes.
 
 ## Changelog
 
+### 1.0.5-alpha - 2021-06-30
+
+* Added caress poses. All poses in the official game should now work.
+  * Caress poses are not scripted, instead it uses automatic/HAMP mode.
+* You need the latest version of [KK Handy plugin](https://github.com/KarilChan/KKHandyPlugin) (v0.9.1) for caress poses to work.
+* You can get the latest build [here](https://github.com/KarilChan/handy-koikatsu-server/releases).
+
 ### 1.0.4-alpha - 2021-06-26
 
 * Added all poses in other modes (onanie, yuri, ffm, darkness).
-* You can get the latest build [here](https://github.com/KarilChan/handy-koikatsu-server/releases).
 
 ### 1.0.3-alpha - 2021-06-25
 
@@ -84,7 +90,7 @@ Csv scripts with segments of different speeds
 
 - [x] Finish scripting all H poses
     - [x] Service
-    - [ ] Caress
+    - [x] Caress
     - [x] Penetration
 - [ ] Support other Illusion games
 - [ ] Support random speed (might not be possible)
