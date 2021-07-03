@@ -19,8 +19,9 @@ communicates with the Handy API to synchronize Handy strokes.
 ### 1.0.5-alpha - 2021-06-30
 
 * Added caress poses. All poses in the official game should now work.
-  * Caress poses are not scripted, instead it uses automatic/HAMP mode.
-* You need the latest version of [KK Handy plugin](https://github.com/KarilChan/KKHandyPlugin) (v0.9.1) for caress poses to work.
+    * Caress poses are not scripted, instead it uses automatic/HAMP mode.
+* You need the latest version of [KK Handy plugin](https://github.com/KarilChan/KKHandyPlugin) (v0.9.1) for caress poses
+  to work.
 * You can get the latest build [here](https://github.com/KarilChan/handy-koikatsu-server/releases).
 
 ### 1.0.4-alpha - 2021-06-26
@@ -37,10 +38,12 @@ communicates with the Handy API to synchronize Handy strokes.
 
 ## Installation
 
-* Install [KK Handy plugin](https://github.com/KarilChan/KKHandyPlugin)
-* Download the [latest precompiled release](https://github.com/KarilChan/handy-koikatsu-server/releases) for this
+* Get the latest BetterRepack for Koikatsu. Tested on RX9 and newer.
+* Get `KKHandyPlugin.dll` and `RestSharp.dll` [here](https://github.com/KarilChan/KKHandyPlugin/releases/latest), place
+  them inside `YOUR_KOIKATSU_FOLDER\BepInEx\Plugins` folder
+* Download the [latest precompiled release](https://github.com/KarilChan/handy-koikatsu-server/releases/latest) for this
   project
-    * Alternatively, if you have Node you may compile this yourself
+    * (optional) if you have Node you may compile this yourself
       ```shell
       git clone https://github.com/KarilChan/handy-koikatsu-server.git
       npm install
@@ -51,6 +54,9 @@ communicates with the Handy API to synchronize Handy strokes.
 * Run `kk-handy-server.exe` before starting H scenes
 
 ### Config file (.env)
+
+If you don't want to enter your connection key every time, you can create a config file in the same directory
+as `kk-handy-server.exe`. The filename must be `.env`. You can use `default.env.example` as reference.
 
 * `HANDY_KEY`
     * Your [Handy connection key](https://www.handysetup.com/en/docs/troubleshooting/find-connection-key/)
