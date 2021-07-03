@@ -41,8 +41,7 @@ communicates with the Handy API to synchronize Handy strokes.
 * Get the latest BetterRepack for Koikatsu. Tested on RX9 and newer.
 * Get `KKHandyPlugin.dll` and `RestSharp.dll` [here](https://github.com/KarilChan/KKHandyPlugin/releases/latest), place
   them inside `YOUR_KOIKATSU_FOLDER\BepInEx\Plugins` folder
-* Download [kk-handy-server.exe](https://github.com/KarilChan/handy-koikatsu-server/releases/latest) for this
-  project
+* Download the latest precompiled version of `kk-handy-server.exe` [here](https://github.com/KarilChan/handy-koikatsu-server/releases/latest)
     * (optional) if you have Node you may compile this yourself
       ```shell
       git clone https://github.com/KarilChan/handy-koikatsu-server.git
